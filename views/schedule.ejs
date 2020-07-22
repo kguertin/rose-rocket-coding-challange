@@ -1,5 +1,29 @@
 <%- include('./includes/head.ejs') %>
 
-    <h1>This is a test</h1>
+<div class="schedule-options">
+    <div class="driver-select">
+        <label for="drivers">Drivers: </label>
+        <select name="drivers" id="drivers">
+            <option value="driver1">Driver 1</option>
+            <option value="driver2">Driver 2</option>
+            <option value="driver3">Driver 3</option>
+        </select>
+    </div>
+    <div class="select-week">
+        <h4>Week One</h4>
+    </div>
+    <div class="download-schedule">
+        <label for="schedule_interval">Download Schedule: </label>
+        <select name="schedule_interval" id="schedule_interval">
+            <option value="2">2 Days</option>
+            <option value="4">4 Days</option>
+            <option value="7">7 Days</option>
+            <option value="14">14 Days</option>
+            <option value="28">28 Days</option>
+
+        </select>
+    </div>
+</div>
+<div class="schedule"></div>
 
 <%- include('./includes/foot.ejs') %>
