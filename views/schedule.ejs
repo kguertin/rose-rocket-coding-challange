@@ -10,20 +10,145 @@
         </select>
     </div>
     <div class="select-week">
-        <h4>Week One</h4>
+        <label for="week">View Week</label>
+        <select name="week" id="week">
+            <% for(let i = 1; i <= 52; i++) { %>
+                <option value="<%= i %>">Week <%= i %></option>
+                <% }%>
+                
+            </select>
+        </div>
+        <div class="download-schedule">
+            <label for="schedule_interval">Download Schedule: </label>
+            <select name="schedule_interval" id="schedule_interval">
+                <option value="2">2 Days</option>
+                <option value="4">4 Days</option>
+                <option value="7">7 Days</option>
+                <option value="14">14 Days</option>
+                <option value="28">28 Days</option>
+                
+            </select>
+        </div>
     </div>
-    <div class="download-schedule">
-        <label for="schedule_interval">Download Schedule: </label>
-        <select name="schedule_interval" id="schedule_interval">
-            <option value="2">2 Days</option>
-            <option value="4">4 Days</option>
-            <option value="7">7 Days</option>
-            <option value="14">14 Days</option>
-            <option value="28">28 Days</option>
+    <div class="add-task">
+        <form action="/add-task" method="post">
+            <div class="form-group">
+                <label for="start-time">Start Time:</label>
+                <select name="start-time" id="start-time">
+                    <option value="0">00:00</option>
+                    <option value="1">01:00</option>
+                    <option value="2">02:00</option>
+                    <option value="3">03:00</option>
+                    <option value="4">04:00</option>
+                    <option value="5">05:00</option>
+                    <option value="6">06:00</option>
+                    <option value="7">07:00</option>
+                    <option value="8">08:00</option>
+                    <option value="9">09:00</option>
+                    <option value="10">10:00</option>
+                    <option value="11">11:00</option>
+                    <option value="12">12:00</option>
+                    <option value="13">13:00</option>
+                    <option value="14">14:00</option>
+                    <option value="15">15:00</option>
+                    <option value="16">16:00</option>
+                    <option value="17">17:00</option>
+                    <option value="18">18:00</option>
+                    <option value="19">19:00</option>
+                    <option value="20">20:00</option>
+                    <option value="21">21:00</option>
+                    <option value="22">22:00</option>
+                    <option value="23">23:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="end-time">End Time:</label>
+                <select name="end-time" id="end-time">
+                    <option value="0">00:00</option>
+                    <option value="1">01:00</option>
+                    <option value="2">02:00</option>
+                    <option value="3">03:00</option>
+                    <option value="4">04:00</option>
+                    <option value="5">05:00</option>
+                    <option value="6">06:00</option>
+                    <option value="7">07:00</option>
+                    <option value="8">08:00</option>
+                    <option value="9">09:00</option>
+                    <option value="10">10:00</option>
+                    <option value="11">11:00</option>
+                    <option value="12">12:00</option>
+                    <option value="13">13:00</option>
+                    <option value="14">14:00</option>
+                    <option value="15">15:00</option>
+                    <option value="16">16:00</option>
+                    <option value="17">17:00</option>
+                    <option value="18">18:00</option>
+                    <option value="19">19:00</option>
+                    <option value="20">20:00</option>
+                    <option value="21">21:00</option>
+                    <option value="22">22:00</option>
+                    <option value="23">23:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" cols="3"></textarea>
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+        
+    <div class="schedule">
+        <div class="week">
+            <div></div>
+            <div class="day">Sunday</div>
+            <div class="day">Monday</div>
+            <div class="day">Tuesday</div>
+            <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+        <div class="day">Saturday</div>
+    </div>
+    <div class="scheduled-times">
 
-        </select>
+        <div class="times">
+            <div class="time">00:00</div>
+            <div class="time">01:00</div>
+            <div class="time">02:00</div>
+            <div class="time">03:00</div>
+            <div class="time">04:00</div>
+            <div class="time">05:00</div>
+            <div class="time">06:00</div>
+            <div class="time">07:00</div>
+            <div class="time">08:00</div>
+            <div class="time">09:00</div>
+            <div class="time">10:00</div>
+            <div class="time">11:00</div>
+            <div class="time">12:00</div>
+            <div class="time">13:00</div>
+            <div class="time">14:00</div>
+            <div class="time">15:00</div>
+            <div class="time">16:00</div>
+            <div class="time">17:00</div>
+            <div class="time">18:00</div>
+            <div class="time">19:00</div>
+            <div class="time">20:00</div>
+            <div class="time">21:00</div>
+            <div class="time">22:00</div>
+            <div class="time">23:00</div>
+        </div>
+        <div class="sunday-schedule"></div>
+        <div class="monday-schedule"></div>
+        <div class="tuesday-schedule"></div>
+        <div class="wednesday-schedule"></div>
+        <div class="thursday-schedule"></div>
+        <div class="friday-schedule"></div>
+        <div class="saturday-schedule"></div>
     </div>
 </div>
-<div class="schedule"></div>
 
-<%- include('./includes/foot.ejs') %>
+    <%- include('./includes/foot.ejs') %>

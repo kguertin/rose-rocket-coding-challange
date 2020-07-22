@@ -1,6 +1,7 @@
 {
     driver1 : {
         schedule: {
+            
         },
         tasks: [{
             task_id:,
@@ -9,6 +10,7 @@
             task_start_time:,
             task_end_time:,
             task_description:,
+            task_type:
 
         }]
     },

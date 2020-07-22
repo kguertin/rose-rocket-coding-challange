@@ -2,3 +2,13 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.week {
+    display: grid;
+    grid-template-columns: 1fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr;
+}
+
+.scheduled-times {
+    display: grid;
+    grid-template-columns: 1fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr;
+}
