@@ -11,7 +11,9 @@ const scheduleData = {
 }
 
 exports.getSchedule = (req, res) => {
-    res.render('schedule');
+    res.render('schedule', {
+        weeklySchedule: []
+    });
 }
 
 exports.addTask = (req, res) => {
@@ -20,7 +22,7 @@ exports.addTask = (req, res) => {
     if (endTime <= startTime) {
         return res.render('schedule', {
         error: "Task end time should be after start time",
-        weeklySchedule: null
+        weeklySchedule: []
         })
 
     }
@@ -29,8 +31,8 @@ exports.addTask = (req, res) => {
     if (scheduleData[driver][week]) {
     scheduleData[driver][week].push({
         day: parseInt(day),
-        startTime,
-        endTime,
+        startTimeBlock: parseInt(startTime) +1,
+        endTimeBlock: parseInt(endTime) + 1,
         task,
         location,
         description
@@ -38,8 +40,8 @@ exports.addTask = (req, res) => {
  } else {
         scheduleData[driver][week] = [{
             day: parseInt(day),
-            startTime,
-            endTime,
+            startTimeBlock: parseInt(startTime) + 1,
+            endTimeBlock: parseInt(endTime) + 1,
             task,
             location,
             description
