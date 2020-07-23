@@ -1,12 +1,13 @@
 <%- include('./includes/head.ejs') %>
+<div class="container">
 
-<div class="schedule-options">
-    <div class="driver-select">
-        <label for="drivers">Drivers: </label>
-        <select name="drivers" id="drivers">
-            <option value="driver1">Driver 1</option>
-            <option value="driver2">Driver 2</option>
-            <option value="driver3">Driver 3</option>
+    <div class="schedule-options">
+        <div class="driver-select">
+            <label for="drivers">Drivers: </label>
+            <select name="drivers" id="drivers">
+                <option value="driver1">Driver 1</option>
+                <option value="driver2">Driver 2</option>
+                <option value="driver3">Driver 3</option>
         </select>
     </div>
     <div class="select-week">
@@ -33,8 +34,40 @@
     <div class="add-task">
         <form action="/add-task" method="post">
             <div class="form-group">
-                <label for="start-time">Start Time:</label>
-                <select name="start-time" id="start-time">
+                <label for="driver">Driver</label>
+                <select name="driver" id="driver">
+                    <option value="driver1">Driver 1</option>
+                    <option value="driver2">Driver 2</option>
+                    <option value="driver3">Driver 3</option>
+                </select>
+            </div>
+            <label for="week">Select Week</label>
+            <select name="week" id="week">
+                <% for(let i = 1; i <= 52; i++) { %>
+                    <option value="<%= i %>">Week <%= i %></option>
+                    <% }%> 
+            </select>
+            <label for="day">Select Day</label>
+            <select name="day" id="day">
+                <option value="1">Sunday</option>
+                <option value="2">Monday</option>
+                <option value="3">Tuesday</option>
+                <option value="4">Wednesday</option>
+                <option value="5">Thursday</option>
+                <option value="6">Friday</option>
+                <option value="7">Saturday</option>
+            </select>
+            <div class="form-group">
+                <label for="task">Task Type</label>
+                <select name="task" id="task">
+                    <option value="pickup">Pick Up</option>
+                    <option value="dropoff">Drop Off</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startTime">Start Time:</label>
+                <select name="startTime" id="startTime">
                     <option value="0">00:00</option>
                     <option value="1">01:00</option>
                     <option value="2">02:00</option>
@@ -62,8 +95,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="end-time">End Time:</label>
-                <select name="end-time" id="end-time">
+                <label for="endTime">End Time:</label>
+                <select name="endTime" id="endTime">
                     <option value="0">00:00</option>
                     <option value="1">01:00</option>
                     <option value="2">02:00</option>
@@ -101,7 +134,7 @@
             <button type="submit">Add Task</button>
         </form>
     </div>
-        
+    
     <div class="schedule">
         <div class="week">
             <div></div>
@@ -109,46 +142,47 @@
             <div class="day">Monday</div>
             <div class="day">Tuesday</div>
             <div class="day">Wednesday</div>
-        <div class="day">Thursday</div>
-        <div class="day">Friday</div>
-        <div class="day">Saturday</div>
-    </div>
-    <div class="scheduled-times">
-
-        <div class="times">
-            <div class="time">00:00</div>
-            <div class="time">01:00</div>
-            <div class="time">02:00</div>
-            <div class="time">03:00</div>
-            <div class="time">04:00</div>
-            <div class="time">05:00</div>
-            <div class="time">06:00</div>
-            <div class="time">07:00</div>
-            <div class="time">08:00</div>
-            <div class="time">09:00</div>
-            <div class="time">10:00</div>
-            <div class="time">11:00</div>
-            <div class="time">12:00</div>
-            <div class="time">13:00</div>
-            <div class="time">14:00</div>
-            <div class="time">15:00</div>
-            <div class="time">16:00</div>
-            <div class="time">17:00</div>
-            <div class="time">18:00</div>
-            <div class="time">19:00</div>
-            <div class="time">20:00</div>
-            <div class="time">21:00</div>
-            <div class="time">22:00</div>
-            <div class="time">23:00</div>
+            <div class="day">Thursday</div>
+            <div class="day">Friday</div>
+            <div class="day">Saturday</div>
         </div>
-        <div class="sunday-schedule"></div>
-        <div class="monday-schedule"></div>
-        <div class="tuesday-schedule"></div>
-        <div class="wednesday-schedule"></div>
-        <div class="thursday-schedule"></div>
-        <div class="friday-schedule"></div>
-        <div class="saturday-schedule"></div>
+        <div class="scheduled-times">
+            
+            <div class="times">
+                <div class="time">00:00</div>
+                <div class="time">01:00</div>
+                <div class="time">02:00</div>
+                <div class="time">03:00</div>
+                <div class="time">04:00</div>
+                <div class="time">05:00</div>
+                <div class="time">06:00</div>
+                <div class="time">07:00</div>
+                <div class="time">08:00</div>
+                <div class="time">09:00</div>
+                <div class="time">10:00</div>
+                <div class="time">11:00</div>
+                <div class="time">12:00</div>
+                <div class="time">13:00</div>
+                <div class="time">14:00</div>
+                <div class="time">15:00</div>
+                <div class="time">16:00</div>
+                <div class="time">17:00</div>
+                <div class="time">18:00</div>
+                <div class="time">19:00</div>
+                <div class="time">20:00</div>
+                <div class="time">21:00</div>
+                <div class="time">22:00</div>
+                <div class="time">23:00</div>
+            </div>
+            <div class="sunday-schedule"></div>
+            <div class="monday-schedule"></div>
+            <div class="tuesday-schedule"></div>
+            <div class="wednesday-schedule"></div>
+            <div class="thursday-schedule"></div>
+            <div class="friday-schedule"></div>
+            <div class="saturday-schedule"></div>
+        </div>
     </div>
+    
 </div>
-
-    <%- include('./includes/foot.ejs') %>
+<%- include('./includes/foot.ejs') %>

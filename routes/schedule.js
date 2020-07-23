@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const scheudleControler = require('../controllers/schedule');
+const scheudleController = require('../controllers/schedule');
 
-router.get('/', scheudleControler.getSchedule);
+router.get('/', scheudleController.getSchedule);
+
+router.post('/add-task', scheudleController.addTask);
 
 module.exports = router;
