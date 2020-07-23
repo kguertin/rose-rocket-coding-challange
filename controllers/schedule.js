@@ -35,6 +35,8 @@ exports.addTask = (req, res) => {
             description
         }]
     }
-    console.log(scheduleData[driver])
-    res.render('schedule');
+    const weeklySchedule = scheduleData[driver][week]
+    res.render('schedule', {
+        weeklySchedule
+    });
 }
