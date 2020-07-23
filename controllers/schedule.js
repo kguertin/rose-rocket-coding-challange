@@ -33,8 +33,9 @@ exports.postTask = (req, res) => {
 
     if (scheduleData[driver][week]) {
     scheduleData[driver][week].push({
+        taskId: scheduleData[driver][week].length + 1,
         day: parseInt(day),
-        startTimeBlock: parseInt(startTime) +1,
+        startTimeBlock: parseInt(startTime) + 1,
         endTimeBlock: parseInt(endTime),
         task,
         location,
@@ -42,6 +43,7 @@ exports.postTask = (req, res) => {
         })
  } else {
         scheduleData[driver][week] = [{
+            taskId: 1,
             day: parseInt(day),
             startTimeBlock: parseInt(startTime) + 1,
             endTimeBlock: parseInt(endTime),
@@ -53,6 +55,7 @@ exports.postTask = (req, res) => {
 
 
     const weeklySchedule = scheduleData[driver][week]
+    console.log(weeklySchedule)
     weeklySchedule.sort((a, b) => {
         return a.day - b.day
     });
