@@ -9,6 +9,6 @@ router.get('/add-task', scheudleController.addTask);
 
 router.post('/add-task', scheudleController.postTask);
 
-router.get('/select-schedule', scheudleController.viewSchedule);
+router.post('/select-schedule', scheudleController.viewSchedule);
 
 module.exports = router;

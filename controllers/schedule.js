@@ -57,7 +57,6 @@ exports.postTask = (req, res) => {
         return a.day - b.day
     });
 
-    console.log(weeklySchedule)
     res.render('schedule', {
         error: null,
         weeklySchedule
@@ -65,8 +64,13 @@ exports.postTask = (req, res) => {
 }
 
 exports.viewSchedule = (req, res) => {
-    {driver, week}  req.body
+    const {driver, week} = req.body
+    console.log(driver, week)
+    let weeklySchedule;
+    scheduleData[driver][week] ? weeklySchedule = scheduleData[driver][week] : weeklySchedule = [];
+    console.log(weeklySchedule)
+    
     res.render('schedule', {
-        weeklySchedule: []
+        weeklySchedule
     })
 }
