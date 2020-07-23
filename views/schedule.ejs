@@ -1,5 +1,10 @@
 <%- include('./includes/head.ejs') %>
 <div class="container">
+    <div class="add-task-button">
+        <form action="/add-task" method="GET">
+        <input type="submit" value="Add Task">
+    </form>
+    </div>
     <div class="schedule-options">
         <form action="/select-schedule" method="GET">
             <div class="form-group driver-select">
@@ -34,110 +39,6 @@
             <button type="submit">Download</button>
         </form>
     </div>
-    <div class="add-task">
-        <form action="/add-task" method="post">
-            <div class="form-group">
-                <label for="driver">Driver</label>
-                <select name="driver" id="driver">
-                    <option value="driver1">Driver 1</option>
-                    <option value="driver2">Driver 2</option>
-                    <option value="driver3">Driver 3</option>
-                </select>
-            </div>
-            <label for="week">Select Week</label>
-            <select name="week" id="week">
-                <% for(let i = 1; i <= 52; i++) { %>
-                    <option value="<%= i %>">Week <%= i %></option>
-                    <% }%> 
-            </select>
-            <label for="day">Select Day</label>
-            <select name="day" id="day">
-                <option value="1">Sunday</option>
-                <option value="2">Monday</option>
-                <option value="3">Tuesday</option>
-                <option value="4">Wednesday</option>
-                <option value="5">Thursday</option>
-                <option value="6">Friday</option>
-                <option value="7">Saturday</option>
-            </select>
-            <div class="form-group">
-                <label for="task">Task Type</label>
-                <select name="task" id="task">
-                    <option value="pickup">Pick Up</option>
-                    <option value="dropoff">Drop Off</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="startTime">Start Time:</label>
-                <select name="startTime" id="startTime">
-                    <option value="0">00:00</option>
-                    <option value="1">01:00</option>
-                    <option value="2">02:00</option>
-                    <option value="3">03:00</option>
-                    <option value="4">04:00</option>
-                    <option value="5">05:00</option>
-                    <option value="6">06:00</option>
-                    <option value="7">07:00</option>
-                    <option value="8">08:00</option>
-                    <option value="9">09:00</option>
-                    <option value="10">10:00</option>
-                    <option value="11">11:00</option>
-                    <option value="12">12:00</option>
-                    <option value="13">13:00</option>
-                    <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                    <option value="17">17:00</option>
-                    <option value="18">18:00</option>
-                    <option value="19">19:00</option>
-                    <option value="20">20:00</option>
-                    <option value="21">21:00</option>
-                    <option value="22">22:00</option>
-                    <option value="23">23:00</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="endTime">End Time:</label>
-                <select name="endTime" id="endTime">
-                    <option value="0">00:00</option>
-                    <option value="1">01:00</option>
-                    <option value="2">02:00</option>
-                    <option value="3">03:00</option>
-                    <option value="4">04:00</option>
-                    <option value="5">05:00</option>
-                    <option value="6">06:00</option>
-                    <option value="7">07:00</option>
-                    <option value="8">08:00</option>
-                    <option value="9">09:00</option>
-                    <option value="10">10:00</option>
-                    <option value="11">11:00</option>
-                    <option value="12">12:00</option>
-                    <option value="13">13:00</option>
-                    <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                    <option value="17">17:00</option>
-                    <option value="18">18:00</option>
-                    <option value="19">19:00</option>
-                    <option value="20">20:00</option>
-                    <option value="21">21:00</option>
-                    <option value="22">22:00</option>
-                    <option value="23">23:00</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="3"></textarea>
-            </div>
-            <button type="submit">Add Task</button>
-        </form>
-    </div>
-    
     <div class="schedule">
         <div class="week">
             <div></div>
@@ -152,84 +53,84 @@
         <div class="scheduled-times">
             
             <div class="times">
-                <div class="time">00:00</div>
-                <div class="time">01:00</div>
-                <div class="time">02:00</div>
-                <div class="time">03:00</div>
-                <div class="time">04:00</div>
-                <div class="time">05:00</div>
-                <div class="time">06:00</div>
-                <div class="time">07:00</div>
-                <div class="time">08:00</div>
-                <div class="time">09:00</div>
-                <div class="time">10:00</div>
-                <div class="time">11:00</div>
-                <div class="time">12:00</div>
-                <div class="time">13:00</div>
-                <div class="time">14:00</div>
-                <div class="time">15:00</div>
-                <div class="time">16:00</div>
-                <div class="time">17:00</div>
-                <div class="time">18:00</div>
-                <div class="time">19:00</div>
-                <div class="time">20:00</div>
-                <div class="time">21:00</div>
-                <div class="time">22:00</div>
-                <div class="time">23:00</div>
+                <div class="time"><p>00:00</p></div>
+                <div class="time"><p>01:00</p></div>
+                <div class="time"><p>02:00</p></div>
+                <div class="time"><p>03:00</p></div>
+                <div class="time"><p>04:00</p></div>
+                <div class="time"><p>05:00</p></div>
+                <div class="time"><p>06:00</p></div>
+                <div class="time"><p>07:00</p></div>
+                <div class="time"><p>08:00</p></div>
+                <div class="time"><p>09:00</p></div>
+                <div class="time"><p>10:00</p></div>
+                <div class="time"><p>11:00</p></div>
+                <div class="time"><p>12:00</p></div>
+                <div class="time"><p>13:00</p></div>
+                <div class="time"><p>14:00</p></div>
+                <div class="time"><p>15:00</p></div>
+                <div class="time"><p>16:00</p></div>
+                <div class="time"><p>17:00</p></div>
+                <div class="time"><p>18:00</p></div>
+                <div class="time"><p>19:00</p></div>
+                <div class="time"><p>20:00</p></div>
+                <div class="time"><p>21:00</p></div>
+                <div class="time"><p>22:00</p></div>
+                <div class="time"><p>23:00</p></div>
             </div>
             <div class="day-schedule">
 
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 1) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="monday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 2) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="tuesday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 3) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="wednesday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 4) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="thursday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 5) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="friday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 6) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>
             </div>
-            <div class="saturday-schedule">
+            <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 7) { %>
-                        <div style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
                     <% } %>
 
                 <% }) %>

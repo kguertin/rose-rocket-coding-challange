@@ -17,6 +17,10 @@ exports.getSchedule = (req, res) => {
 }
 
 exports.addTask = (req, res) => {
+    res.render('add-task');
+}
+
+exports.postTask = (req, res) => {
     const {driver, task, week, day, startTime, endTime, location, description} = req.body;
 
     if (endTime <= startTime) {
@@ -27,12 +31,11 @@ exports.addTask = (req, res) => {
 
     }
 
-
     if (scheduleData[driver][week]) {
     scheduleData[driver][week].push({
         day: parseInt(day),
         startTimeBlock: parseInt(startTime) +1,
-        endTimeBlock: parseInt(endTime) + 1,
+        endTimeBlock: parseInt(endTime),
         task,
         location,
         description
@@ -41,7 +44,7 @@ exports.addTask = (req, res) => {
         scheduleData[driver][week] = [{
             day: parseInt(day),
             startTimeBlock: parseInt(startTime) + 1,
-            endTimeBlock: parseInt(endTime) + 1,
+            endTimeBlock: parseInt(endTime),
             task,
             location,
             description
@@ -59,4 +62,11 @@ exports.addTask = (req, res) => {
         error: null,
         weeklySchedule
     });
+}
+
+exports.viewSchedule = (req, res) => {
+    {driver, week}  req.body
+    res.render('schedule', {
+        weeklySchedule: []
+    })
 }

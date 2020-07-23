@@ -5,6 +5,10 @@ const scheudleController = require('../controllers/schedule');
 
 router.get('/', scheudleController.getSchedule);
 
-router.post('/add-task', scheudleController.addTask);
+router.get('/add-task', scheudleController.addTask);
+
+router.post('/add-task', scheudleController.postTask);
+
+router.get('/select-schedule', scheudleController.viewSchedule);
 
 module.exports = router;
