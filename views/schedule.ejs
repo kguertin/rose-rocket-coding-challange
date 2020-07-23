@@ -1,5 +1,4 @@
 <%- include('./includes/head.ejs') %>
-<div class="container">
     <div class="add-task-button">
         <form action="/add-task" method="GET">
         <input type="submit" value="Add Task">
@@ -82,7 +81,19 @@
 
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 1) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <form action="edit-task" method="POST">
+                                <input type="hidden" value="<%= task.taskId %>">
+                                <button type="submit" class="btn btn-secondary">Edit</button>
+                            </form>
+                            <form action="delete-task" method="POST">
+                                <input type="hidden" value="<%= task.taskId %>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -137,6 +148,4 @@
             </div>
         </div>
     </div>
-    
-</div>
 <%- include('./includes/foot.ejs') %>
