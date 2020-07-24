@@ -40,6 +40,7 @@ exports.postTask = (req, res) => {
         task,
         location,
         description,
+        weekId: week
         })
  } else {
         scheduleData[driver][week] = [{
@@ -50,6 +51,7 @@ exports.postTask = (req, res) => {
             task,
             location,
             description,
+            weekId: week
         }]
     }
 
@@ -83,5 +85,7 @@ exports.editTask = (req, res) => {
 }
 
 exports.deleteTask = (req, res) => {
-
+    const {weekId, taskId} = req.body
+    console.log('WeekId: ', weekId);
+    console.log('taskId: ', taskId);
 }

@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const scheudleController = require('../controllers/schedule');
+const scheduleController = require('../controllers/schedule');
 
-router.get('/', scheudleController.getSchedule);
+router.get('/', scheduleController.getSchedule);
 
-router.get('/add-task', scheudleController.addTask);
+router.get('/add-task', scheduleController.addTask);
 
-router.post('/add-task', scheudleController.postTask);
+router.post('/add-task', scheduleController.postTask);
 
-router.post('/select-schedule', scheudleController.viewSchedule);
+router.post('/select-schedule', scheduleController.viewSchedule);
 
 router.post('/edit-task', scheduleController.editTask)
 
