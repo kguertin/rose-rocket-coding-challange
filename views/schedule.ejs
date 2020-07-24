@@ -103,7 +103,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 2) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -111,7 +125,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 3) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -119,7 +147,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 4) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -127,7 +169,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 5) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -135,7 +191,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 6) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
@@ -143,7 +213,21 @@
             <div class="day-schedule">
                 <% weeklySchedule.forEach(task => { %>
                     <% if(task.day === 7) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>"></div>
+                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                            <h6><%= task.task %></h6>
+                            <p><%= task.location %></p>
+                            <p><%= task.description %></p>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     <% } %>
 
                 <% }) %>
