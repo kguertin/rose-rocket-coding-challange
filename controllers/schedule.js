@@ -39,7 +39,8 @@ exports.postTask = (req, res) => {
         endTimeBlock: parseInt(endTime),
         task,
         location,
-        description
+        description,
+        taskSpan: `span${endTime - startTime}`
         })
  } else {
         scheduleData[driver][week] = [{
@@ -49,7 +50,8 @@ exports.postTask = (req, res) => {
             endTimeBlock: parseInt(endTime),
             task,
             location,
-            description
+            description,
+            taskSpan: `span${endTime - startTime}`
         }]
     }
 

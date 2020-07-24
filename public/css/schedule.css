@@ -12,18 +12,22 @@
 .scheduled-times {
     display: grid;
     grid-template-columns: 1fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr 1.28fr;
-}
-
-.day-schedule {
-    display: grid;
     grid-template-rows: repeat(24, 1fr);
 }
 
+.
+
+.day-schedule {
+    /* display: grid;
+    grid-template-rows: repeat(24, 1fr); */
+}
+
 .time {
-    height: 3rem;
+    height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #444;
 }
 
 .time-block {
@@ -33,3 +37,99 @@
 .empty-block {
     background: green;
 }
+
+/* .span1 {
+    height: 5rem;
+}
+
+.span2 {
+    height: 10rem;
+}
+
+.span3 {
+    height: 15rem;
+}
+
+.span4 {
+    height: 20rem;
+}
+
+.span5 {
+    height: 25rem;
+}
+
+.span6 {
+    height: 30rem;
+}
+
+.span7 {
+    height: 35rem;
+}
+
+.span8 {
+    height: 40rem;
+}
+
+.span9 {
+    height: 45rem;
+}
+
+.span10 {
+    height: 50rem;
+}
+
+.span11 {
+    height: 55rem;
+}
+
+.span12 {
+    height: 60rem;
+}
+
+.span13 {
+    height: 65rem;
+}
+
+.spa14 {
+    height: 70rem;
+}
+
+.span15 {
+    height: 75rem;
+}
+
+.span16 {
+    height: 80rem;
+}
+
+.span17 {
+    height: 85rem;
+}
+
+.span18 {
+    height: 90rem;
+}
+
+.span19 {
+    height: 95rem;
+}
+
+.span20 {
+    height: 100rem;
+}
+
+.span21 {
+    height: 105rem;
+}
+
+.span22 {
+    height: 110rem;
+}
+
+.span23 {
+    height: 115rem;
+}
+
+.span24 {
+    height: 120rem;
+} */
