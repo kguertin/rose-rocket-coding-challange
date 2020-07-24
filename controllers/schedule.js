@@ -40,7 +40,8 @@ exports.postTask = (req, res) => {
         task,
         location,
         description,
-        weekId: week
+        weekId: week,
+        driverId: driver
         })
  } else {
         scheduleData[driver][week] = [{
@@ -51,7 +52,8 @@ exports.postTask = (req, res) => {
             task,
             location,
             description,
-            weekId: week
+            weekId: week,
+            driverId: driver
         }]
     }
 
@@ -85,7 +87,8 @@ exports.editTask = (req, res) => {
 }
 
 exports.deleteTask = (req, res) => {
-    const {weekId, taskId} = req.body
+    const {weekId, taskId, driverId} = req.body
     console.log('WeekId: ', weekId);
     console.log('taskId: ', taskId);
+    console.log(scheduleData[driverId][weekId])
 }

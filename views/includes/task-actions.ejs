@@ -1,0 +1,14 @@
+<div class="button-group">
+    <form action="/edit-task" method="POST">
+        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+        <input type="hidden" name="driverId" value="<%= driverId %>">
+        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+    </form>
+    <form action="/delete-task" method="POST">
+        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+        <input type="hidden" name="driverId" value="<%= driverId %>">
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    </form>
+</div>
