@@ -77,3 +77,11 @@ exports.viewSchedule = (req, res) => {
         weeklySchedule
     })
 }
+
+exports.editTask = (req, res) => {
+
+}
+
+exports.deleteTask = (req, res) => {
+
+}
