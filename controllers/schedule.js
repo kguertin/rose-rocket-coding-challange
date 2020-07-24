@@ -36,22 +36,20 @@ exports.postTask = (req, res) => {
         taskId: scheduleData[driver][week].length + 1,
         day: parseInt(day),
         startTimeBlock: parseInt(startTime) + 1,
-        endTimeBlock: parseInt(endTime),
+        endTimeBlock: parseInt(endTime) + 1,
         task,
         location,
         description,
-        taskSpan: `span${endTime - startTime}`
         })
  } else {
         scheduleData[driver][week] = [{
             taskId: 1,
             day: parseInt(day),
             startTimeBlock: parseInt(startTime) + 1,
-            endTimeBlock: parseInt(endTime),
+            endTimeBlock: parseInt(endTime) + 1,
             task,
             location,
             description,
-            taskSpan: `span${endTime - startTime}`
         }]
     }
 

@@ -15,11 +15,9 @@
     grid-template-rows: repeat(24, 1fr);
 }
 
-.
-
 .day-schedule {
-    /* display: grid;
-    grid-template-rows: repeat(24, 1fr); */
+    display: grid;
+    grid-template-rows: repeat(24, 5rem);
 }
 
 .time {
@@ -32,20 +30,26 @@
 
 .time-block {
     background: blue;
+    color: #fff
+}
+.time-block .button-group {
+    display: flex;
 }
 
 .empty-block {
     background: green;
 }
 
-/* .span1 {
+ .span1 {
     height: 5rem;
+    max-height: 5rem;
 }
 
 .span2 {
+    max-height: 10rem;
     height: 10rem;
 }
-
+/*
 .span3 {
     height: 15rem;
 }

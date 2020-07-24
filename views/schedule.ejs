@@ -85,14 +85,16 @@
                             <h6><%= task.task %></h6>
                             <p><%= task.location %></p>
                             <p><%= task.description %></p>
-                            <form action="edit-task" method="POST">
-                                <input type="hidden" value="<%= task.taskId %>">
-                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                            </form>
-                            <form action="delete-task" method="POST">
-                                <input type="hidden" value="<%= task.taskId %>">
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
+                            <div class="button-group">
+                                <form action="edit-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                </form>
+                                <form action="delete-task" method="POST">
+                                    <input type="hidden" value="<%= task.taskId %>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     <% } %>
 
