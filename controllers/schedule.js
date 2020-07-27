@@ -88,7 +88,6 @@ exports.editTask = (req, res) => {
 
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body
-    console.log('WeekId: ', weekId);
-    console.log('taskId: ', taskId);
-    console.log(scheduleData[driverId][weekId])
+    const searchSchedule = scheduleData[driverId][weekId];
+    console.log(searchSchedule)
 }
