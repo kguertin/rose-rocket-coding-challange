@@ -4,7 +4,7 @@
         <form action="/add-task" method="post">
             <div class="form-group">
                 <label for="driver">Driver</label>
-                <select name="driver" id="driver">
+                <select name="driver" id="driver" <% if(edit) { %> value="<%= taskData.driverId %>" <% } %> >
                     <option value="driver1">Driver 1</option>
                     <option value="driver2">Driver 2</option>
                     <option value="driver3">Driver 3</option>
@@ -13,7 +13,7 @@
             <label for="week">Select Week</label>
             <select name="week" id="week">
                 <% for(let i = 1; i <= 52; i++) { %>
-                    <option value="<%= i %>">Week <%= i %></option>
+                    <option value="<%= i %>" <% if(edit) { if(i === parseInt(taskData.weekId)) { %> selected <% }} %>>Week <%= i %></option>
                     <% }%> 
             </select>
             <label for="day">Select Day</label>
@@ -94,13 +94,17 @@
             </div>
             <div class="form-group">
                 <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location">
+                <input type="text" class="form-control" id="location" name="location" <% if(edit){ %>value="<%= taskData.location %>" <% } %>>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="3"></textarea>
+                <textarea class="form-control" name="description" id="description" cols="3"><% if(edit){ %> <%= taskData.description %> <% } %></textarea>
             </div>
+            <% if(edit) { %>
+            <button type="submit">Update Task</button>
+            <% } else { %>
             <button type="submit">Add Task</button>
+            <% } %>
         </form>
     </div>
     
