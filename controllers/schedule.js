@@ -73,6 +73,10 @@ exports.postTask = (req, res) => {
     });
 }
 
+exports.updateTask = (req, res) => {
+    res.send('ok');
+}
+
 exports.viewSchedule = (req, res) => {
     const {driver, week} = req.body
     console.log(driver, week)

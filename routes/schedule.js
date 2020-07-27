@@ -9,6 +9,8 @@ router.get('/add-task', scheduleController.addTask);
 
 router.post('/add-task', scheduleController.postTask);
 
+router.post('/update-task', scheduleController.updateTask)
+
 router.post('/select-schedule', scheduleController.viewSchedule);
 
 router.post('/edit-task', scheduleController.editTask)

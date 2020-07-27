@@ -1,10 +1,14 @@
 <%- include('./includes/head.ejs') %>
 <div class="container">
     <div class="add-task">
-        <form action="/add-task" method="post">
+        <% if(edit) { %>
+            <form action="/update-task" method="post">
+        <% } else { %>
+            <form action="/add-task" method="post">
+        <% } %>
             <div class="form-group">
                 <label for="driver">Driver</label>
-                <select name="driver" id="driver" <% if(edit) { %> value="<%= taskData.driverId %>" <% } %> >
+                <select name="driver" id="driver">
                     <option value="driver1">Driver 1</option>
                     <option value="driver2">Driver 2</option>
                     <option value="driver3">Driver 3</option>
