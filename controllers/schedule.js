@@ -17,7 +17,10 @@ exports.getSchedule = (req, res) => {
 }
 
 exports.addTask = (req, res) => {
-    res.render('add-task');
+    res.render('add-task', {
+        edit: false,
+        taskData: null
+    });
 }
 
 exports.postTask = (req, res) => {
@@ -43,7 +46,7 @@ exports.postTask = (req, res) => {
         weekId: week,
         driverId: driver
         })
- } else {
+    } else {
         scheduleData[driver][week] = [{
             taskId: 1,
             day: parseInt(day),
@@ -83,6 +86,14 @@ exports.viewSchedule = (req, res) => {
 }
 
 exports.editTask = (req, res) => {
+    const {weekId, taskId, driverId} = req.body;
+    const weeklySchedule = scheduleData[driverId][weekId];
+    const taskData = weeklySchedule.filter(task => task.taskId === parseInt(taskId))[0]
+    console.log(taskData)
+    res.render('add-task', {
+        edit: true,
+        taskData
+    })
 
 }
 
