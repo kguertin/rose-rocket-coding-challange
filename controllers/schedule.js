@@ -89,5 +89,10 @@ exports.editTask = (req, res) => {
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body
     const searchSchedule = scheduleData[driverId][weekId];
-    console.log(searchSchedule)
+    const updatedTasks = searchSchedule.filter(task => task.taskId !== parseInt(taskId));
+    scheduleData[driverId][weekId] = updatedTasks
+    const weeklySchedule = scheduleData[driverId][weekId];
+    res.render('schedule', {
+        weeklySchedule
+    })
 }
