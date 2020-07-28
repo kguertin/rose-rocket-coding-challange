@@ -1,3 +1,9 @@
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+
+const moment = MomentRange.extendMoment(Moment);
+
+// Schedule "Database"
 const scheduleData = {
     driver1: {
 
@@ -31,11 +37,8 @@ exports.postTask = (req, res) => {
         error: "Task end time should be after start time",
         weeklySchedule: []
         })
-
     }
 
-
-    
     if (scheduleData[driver][week]) {
         const existingSchedule = scheduleData[driver][week]
         existingSchedule.forEach(i => {
@@ -64,6 +67,8 @@ exports.postTask = (req, res) => {
         scheduleData[driver][week].push({
             taskId: Math.random(),
             day: parseInt(day),
+            startTime: moment(startTime, 'HH a'),
+            endTime: moment(endTime, "HH a"),
             startTimeBlock: parseInt(startTime) + 1,
             endTimeBlock: parseInt(endTime) + 1,
             task,
@@ -76,6 +81,8 @@ exports.postTask = (req, res) => {
         scheduleData[driver][week] = [{
             taskId: Math.random(),
             day: parseInt(day),
+            startTime: moment(startTime, 'HH a'),
+            endTime: moment(endTime, "HH a"),
             startTimeBlock: parseInt(startTime) + 1,
             endTimeBlock: parseInt(endTime) + 1,
             task,
@@ -88,6 +95,7 @@ exports.postTask = (req, res) => {
 
 
     const weeklySchedule = scheduleData[driver][week]
+    console.log(weeklySchedule);
     weeklySchedule.sort((a, b) => {
         return a.day - b.day
     });
@@ -131,6 +139,8 @@ exports.confirmNewTask = (req, res) => {
     const newTask = {
         taskId: Math.random(),
         day: parseInt(day),
+        startTime: moment(startTime - 1, "HH a"),
+        endTime: moment(endTimeBlock - 1, "HH a"),
         startTimeBlock: parseInt(startTimeBlock),
         endTimeBlock: parseInt(endTimeBlock),
         task,

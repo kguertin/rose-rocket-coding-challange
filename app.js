@@ -20,9 +20,9 @@ app.listen(PORT, () => {
     console.log(`Server connected on port ${PORT}`);
 }) 
 
-// fix time to use moment to check overlap
-// when updating task when one already exists user can choose to delete conflicting task
-// update actual task instead of adding a new one
+// fix time to use moment to check overlap, this should make everything easier 
+// when updating task when one already exists user can choose to delete conflicting task, similar to conflicting new task logic
+// update actual task instead of adding a new one, filter by id 
 //download csv file via fs and maybe node library. 
 //readme files
 // error handling
