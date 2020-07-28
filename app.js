@@ -21,7 +21,6 @@ app.listen(PORT, () => {
 }) 
 
 // error handling
-// check that something isnt added in that time
 // add task when one already exist, user can choose to overwrite existing task
 // when updating task when one already exists user can choose to delete conflicting task
 // update actual task instead of adding a new one

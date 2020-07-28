@@ -38,10 +38,9 @@ exports.postTask = (req, res) => {
     
     if (scheduleData[driver][week]) {
         const existingSchedule = scheduleData[driver][week]
-    
         existingSchedule.forEach(i => {
-
             if(i.day === parseInt(day) && (i.startTimeBlock <= parseInt(startTime) + 1 || i.endtimeBlock > parseInt(startTime) + 1)){
+                console.log(i.driverId)
                 return res.render('confirm-new-task', {
                     newTaskData: {
                         taskId: Math.random(),
@@ -57,8 +56,12 @@ exports.postTask = (req, res) => {
                     existingTask: i
                 })
             }
+
         })
-        
+        return 
+    }
+
+    if (scheduleData[driver][week]) {
         scheduleData[driver][week].push({
             taskId: Math.random(),
             day: parseInt(day),
@@ -102,10 +105,8 @@ exports.updateTask = (req, res) => {
 
 exports.viewSchedule = (req, res) => {
     const {driver, week} = req.body
-    console.log(driver, week)
     let weeklySchedule;
     scheduleData[driver][week] ? weeklySchedule = scheduleData[driver][week] : weeklySchedule = [];
-    console.log(weeklySchedule)
     
     res.render('schedule', {
         weeklySchedule

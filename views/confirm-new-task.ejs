@@ -2,12 +2,14 @@
 <div class="container">
     <h1>This driver has a conflicting task during this time block</h1>
     <h3>Do you want to overide it?</h3>
-    <form action="">
-        <input type="hidden" value=""
-        <button type="submit" class="btn btn danger">Cancel</button>
+    <form action="/select-schedule" method="POST">
+        <input type="hidden" name="week" value="<%= existingTask.weekId %>">
+        <input type="hidden" name="driver" value="<%= existingTask.driverId %>">
+        <button type="submit" class="btn btn-danger">Cancel</button>
     </form>
     <form action="/confirm-new-task" method="POST">
         <input type="hidden" value="<%= newTaskData %>">
+        <input type="hidden" value="<%= existingTask %>">
         <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 </div>
