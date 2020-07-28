@@ -8,8 +8,15 @@
         <button type="submit" class="btn btn-danger">Cancel</button>
     </form>
     <form action="/confirm-new-task" method="POST">
-        <input type="hidden" value="<%= newTaskData %>">
-        <input type="hidden" value="<%= existingTask %>">
+        <input type="hidden" name="day" value="<%= newTaskData.day %>">
+        <input type="hidden" name="startTimeBlock" value="<%= newTaskData.startTimeBlock %>">
+        <input type="hidden" name="endTimeBlock" value="<%= newTaskData.endTimeBlock %>">
+        <input type="hidden" name="task" value="<%= newTaskData.task %>">
+        <input type="hidden" name="location" value="<%= newTaskData.location %>">
+        <input type="hidden" name="description" value="<%= newTaskData.description %>">
+        <input type="hidden" name="weekId" value="<%= newTaskData.weekId %>">
+        <input type="hidden" name="driverId" value="<%= newTaskData.driverId %>">
+        <input type="hidden" name="existingTaskId" value="<%= existingTask.taskId %>">
         <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 </div>

@@ -20,13 +20,14 @@ app.listen(PORT, () => {
     console.log(`Server connected on port ${PORT}`);
 }) 
 
-// error handling
-// add task when one already exist, user can choose to overwrite existing task
+// fix time to use moment to check overlap
 // when updating task when one already exists user can choose to delete conflicting task
 // update actual task instead of adding a new one
-//readme files
 //download csv file via fs and maybe node library. 
+//readme files
+// error handling
 // style
+//change view  schedule to get rather than post
 
 // if we have time:
 //rework how we store data so we can use filter to handle everything

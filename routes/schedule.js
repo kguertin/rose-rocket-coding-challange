@@ -11,7 +11,7 @@ router.post('/add-task', scheduleController.postTask);
 
 router.post('/update-task', scheduleController.updateTask)
 
-router.get('/select-schedule', scheduleController.viewSchedule);
+router.post('/confirm-new-task', scheduleController.confirmNewTask);
 
 router.post('/select-schedule', scheduleController.viewSchedule);
 

@@ -43,7 +43,6 @@ exports.postTask = (req, res) => {
                 console.log(i.driverId)
                 return res.render('confirm-new-task', {
                     newTaskData: {
-                        taskId: Math.random(),
                         day: parseInt(day),
                         startTimeBlock: parseInt(startTime) + 1,
                         endTimeBlock: parseInt(endTime) + 1,
@@ -123,6 +122,29 @@ exports.editTask = (req, res) => {
         taskData
     })
 
+}
+
+exports.confirmNewTask = (req, res) => {
+    const {driverId, weekId, existingTaskId, day, startTimeBlock, endTimeBlock, location, description, task} = req.body;
+    const existingSchedule = scheduleData[driverId][parseInt(weekId)];
+    const newSchedule = existingSchedule.filter(task =>  task.taskId !== Number(existingTaskId));
+    const newTask = {
+        taskId: Math.random(),
+        day: parseInt(day),
+        startTimeBlock: parseInt(startTimeBlock),
+        endTimeBlock: parseInt(endTimeBlock),
+        task,
+        location,
+        description,
+        weekId: parseInt(weekId),
+        driverId: driverId
+    }
+    newSchedule.push(newTask);
+    scheduleData[driverId][parseInt(weekId)] = newSchedule
+
+    return res.render('schedule', {
+        weeklySchedule: newSchedule
+    })
 }
 
 exports.deleteTask = (req, res) => {
