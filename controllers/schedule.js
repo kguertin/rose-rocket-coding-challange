@@ -42,7 +42,13 @@ exports.postTask = (req, res) => {
     if (scheduleData[driver][week]) {
         const existingSchedule = scheduleData[driver][week]
         existingSchedule.forEach(i => {
-            if(i.day === parseInt(day) && (i.startTimeBlock <= parseInt(startTime) + 1 || i.endtimeBlock > parseInt(startTime) + 1)){
+            const newStart = moment(startTime, "HH a");
+            const newEnd = moment(endTime, 'HH a');
+            const existingRange = moment.range(i.startTime, i.endTime);
+            const newRange = moment.range(newStart, newEnd)
+
+            console.log(newRange.overlaps(existingRange))
+            if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
                 console.log(i.driverId)
                 return res.render('confirm-new-task', {
                     newTaskData: {
@@ -58,9 +64,7 @@ exports.postTask = (req, res) => {
                     existingTask: i
                 })
             }
-
         })
-        return 
     }
 
     if (scheduleData[driver][week]) {
@@ -139,7 +143,7 @@ exports.confirmNewTask = (req, res) => {
     const newTask = {
         taskId: Math.random(),
         day: parseInt(day),
-        startTime: moment(startTime - 1, "HH a"),
+        startTime: moment(startTimeBlock - 1, "HH a"),
         endTime: moment(endTimeBlock - 1, "HH a"),
         startTimeBlock: parseInt(startTimeBlock),
         endTimeBlock: parseInt(endTimeBlock),
