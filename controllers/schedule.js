@@ -40,6 +40,7 @@ exports.postTask = (req, res) => {
     }
 
     if (scheduleData[driver][week]) {
+        let existingTask, newTaskData;
         const existingSchedule = scheduleData[driver][week]
         existingSchedule.forEach(i => {
             const newStart = moment(startTime, "HH a");
@@ -47,11 +48,8 @@ exports.postTask = (req, res) => {
             const existingRange = moment.range(i.startTime, i.endTime);
             const newRange = moment.range(newStart, newEnd)
 
-            console.log(newRange.overlaps(existingRange))
             if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
-                console.log(i.driverId)
-                return res.render('confirm-new-task', {
-                    newTaskData: {
+                    newTaskData = {
                         day: parseInt(day),
                         startTimeBlock: parseInt(startTime) + 1,
                         endTimeBlock: parseInt(endTime) + 1,
@@ -61,10 +59,16 @@ exports.postTask = (req, res) => {
                         weekId: parseInt(week),
                         driverId: driver
                     },
-                    existingTask: i
-                })
+                    existingTask = i
             }
         })
+        
+        if(newTaskData) {
+            return res.render('confirm-new-task', {
+                newTaskData,
+                existingTask
+            })
+        }
     }
 
     if (scheduleData[driver][week]) {
@@ -104,7 +108,7 @@ exports.postTask = (req, res) => {
         return a.day - b.day
     });
 
-    res.render('schedule', {
+   return res.render('schedule', {
         error: null,
         weeklySchedule
     });
@@ -153,6 +157,7 @@ exports.confirmNewTask = (req, res) => {
         weekId: parseInt(weekId),
         driverId: driverId
     }
+    
     newSchedule.push(newTask);
     scheduleData[driverId][parseInt(weekId)] = newSchedule
 
