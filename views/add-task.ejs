@@ -107,6 +107,8 @@
                 <textarea class="form-control" name="description" id="description" cols="3"><% if(edit){ %> <%= taskData.description %> <% } %></textarea>
             </div>
             <% if(edit) { %>
+            <input type="hidden" name="taskId" value="<%= taskData.taskId  %>">
+            <input type="hidden" name="driverId" value="<%= taskData.driverId %>">
             <button type="submit">Update Task</button>
             <% } else { %>
             <button type="submit">Add Task</button>

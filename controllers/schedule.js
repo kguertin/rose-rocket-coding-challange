@@ -114,7 +114,30 @@ exports.postTask = (req, res) => {
 }
 
 exports.updateTask = (req, res) => {
-    res.send('ok');
+    const { taskId, day, startTime, endTime, task, location, description, week, driverId } = req.body;
+    const newSchedule = scheduleData[driverId][week].filter(task => task.taskId !== Number(taskId));
+
+    const updatedTask = {
+    taskId: taskId,
+    day: parseInt(day),
+    startTime: moment(startTime, 'HH a'),
+    endTime: moment(endTime, "HH a"),
+    startTimeBlock: parseInt(startTime) + 1,
+    endTimeBlock: parseInt(endTime) + 1,
+    task,
+    location,
+    description,
+    weekId: parseInt(week),
+    driverId: driverId
+    }
+
+    newSchedule.push(updatedTask)
+    scheduleData[driverId][week] = newSchedule
+
+    return res.render('schedule', {
+        weeklySchedule: newSchedule
+    })
+    
 }
 
 exports.viewSchedule = (req, res) => {
