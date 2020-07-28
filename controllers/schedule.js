@@ -62,7 +62,7 @@ exports.postTask = (req, res) => {
                     existingTask = i
             }
         })
-        
+
         if(newTaskData) {
             return res.render('confirm-new-task', {
                 newTaskData,
@@ -103,7 +103,6 @@ exports.postTask = (req, res) => {
 
 
     const weeklySchedule = scheduleData[driver][week]
-    console.log(weeklySchedule);
     weeklySchedule.sort((a, b) => {
         return a.day - b.day
     });
@@ -142,8 +141,11 @@ exports.editTask = (req, res) => {
 
 exports.confirmNewTask = (req, res) => {
     const {driverId, weekId, existingTaskId, day, startTimeBlock, endTimeBlock, location, description, task} = req.body;
+
     const existingSchedule = scheduleData[driverId][parseInt(weekId)];
     const newSchedule = existingSchedule.filter(task =>  task.taskId !== Number(existingTaskId));
+    scheduleData[driverId][parseInt(weekId)] = newSchedule;
+
     const newTask = {
         taskId: Math.random(),
         day: parseInt(day),
@@ -156,6 +158,26 @@ exports.confirmNewTask = (req, res) => {
         description,
         weekId: parseInt(weekId),
         driverId: driverId
+    };
+    let newTaskData, existingTask;
+    console.log(newSchedule)
+
+    newSchedule.forEach(i => {
+        const newStart = moment(newTask.startTime, "HH a");
+        const newEnd = moment(newTask.endTime, 'HH a');
+        const existingRange = moment.range(i.startTime, i.endTime);
+        const newRange = moment.range(newStart, newEnd)
+        if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
+            newTaskData = newTask;
+            existingTask = i;
+        }
+    })
+
+    if(newTaskData) {
+        return res.render('confirm-new-task', {
+            newTaskData,
+            existingTask
+        })
     }
     
     newSchedule.push(newTask);
