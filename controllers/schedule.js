@@ -34,35 +34,58 @@ exports.postTask = (req, res) => {
 
     }
 
+
+    
     if (scheduleData[driver][week]) {
-    scheduleData[driver][week].push({
-        taskId: scheduleData[driver][week].length + 1,
-        day: parseInt(day),
-        startTimeBlock: parseInt(startTime) + 1,
-        endTimeBlock: parseInt(endTime) + 1,
-        task,
-        location,
-        description,
-        weekId: week,
-        driverId: driver
+        const existingSchedule = scheduleData[driver][week]
+    
+        existingSchedule.forEach(i => {
+
+            if(i.day === parseInt(day) && (i.startTimeBlock <= parseInt(startTime) + 1 || i.endtimeBlock > parseInt(startTime) + 1)){
+                return res.render('confirm-new-task', {
+                    newTaskData: {
+                        taskId: Math.random(),
+                        day: parseInt(day),
+                        startTimeBlock: parseInt(startTime) + 1,
+                        endTimeBlock: parseInt(endTime) + 1,
+                        task: task,
+                        location,
+                        description,
+                        weekId: parseInt(week),
+                        driverId: driver
+                    },
+                    existingTask: i
+                })
+            }
         })
-    } else {
-        scheduleData[driver][week] = [{
-            taskId: 1,
+        
+        scheduleData[driver][week].push({
+            taskId: Math.random(),
             day: parseInt(day),
             startTimeBlock: parseInt(startTime) + 1,
             endTimeBlock: parseInt(endTime) + 1,
             task,
             location,
             description,
-            weekId: week,
+            weekId: parseInt(week),
+            driverId: driver
+            })
+    } else {
+        scheduleData[driver][week] = [{
+            taskId: Math.random(),
+            day: parseInt(day),
+            startTimeBlock: parseInt(startTime) + 1,
+            endTimeBlock: parseInt(endTime) + 1,
+            task,
+            location,
+            description,
+            weekId: parseInt(week),
             driverId: driver
         }]
     }
 
 
     const weeklySchedule = scheduleData[driver][week]
-    console.log(weeklySchedule)
     weeklySchedule.sort((a, b) => {
         return a.day - b.day
     });
@@ -92,7 +115,7 @@ exports.viewSchedule = (req, res) => {
 exports.editTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body;
     const weeklySchedule = scheduleData[driverId][weekId];
-    const taskData = weeklySchedule.filter(task => task.taskId === parseInt(taskId))[0]
+    const taskData = weeklySchedule.filter(task => task.taskId === Number(taskId))[0]
     console.log(taskData)
     res.render('add-task', {
         edit: true,
@@ -104,7 +127,7 @@ exports.editTask = (req, res) => {
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body
     const searchSchedule = scheduleData[driverId][weekId];
-    const updatedTasks = searchSchedule.filter(task => task.taskId !== parseInt(taskId));
+    const updatedTasks = searchSchedule.filter(task => task.taskId !== Number(taskId));
     scheduleData[driverId][weekId] = updatedTasks
     const weeklySchedule = scheduleData[driverId][weekId];
     res.render('schedule', {

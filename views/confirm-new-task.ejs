@@ -1,0 +1,14 @@
+<%- include('./includes/head.ejs') %>
+<div class="container">
+    <h1>This driver has a conflicting task during this time block</h1>
+    <h3>Do you want to overide it?</h3>
+    <form action="">
+        <input type="hidden" value=""
+        <button type="submit" class="btn btn danger">Cancel</button>
+    </form>
+    <form action="/confirm-new-task" method="POST">
+        <input type="hidden" value="<%= newTaskData %>">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
+</div>
+<%- include('./includes/foot.ejs') %>
