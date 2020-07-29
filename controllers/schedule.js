@@ -115,8 +115,12 @@ exports.postTask = (req, res) => {
 
 exports.updateTask = (req, res) => {
     const { taskId, day, startTime, endTime, task, location, description, week, driverId } = req.body;
+    let conflictingTask, itemToUpdate;
+
+    scheduleData[driverId][week].forEach(task => {
+        if (task.taskId === Number(taskId)) itemToUpdate = task;
+    })
     const newSchedule = scheduleData[driverId][week].filter(task => task.taskId !== Number(taskId));
-    let existingTask;
     
     const updatedTask = {
         taskId: taskId,
@@ -139,20 +143,20 @@ exports.updateTask = (req, res) => {
         const newRange = moment.range(newStart, newEnd)
 
         if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
-            existingTask = i;
-            console.log(existingTask);
+            conflictingTask = i;
         }
     })
-    if(existingTask){
+    if(conflictingTask){
         return res.render('confirm-update-task', {
             newTaskData: updatedTask,
-            existingTask
+            conflictingTask,
+            itemToUpdate
         })
     }
 
 
-    newSchedule.push(updatedTask)
-    scheduleData[driverId][week] = newSchedule
+    scheduleData[driverId][week] = newSchedule;
+    newSchedule.push(updatedTask);
 
     return res.render('schedule', {
         weeklySchedule: newSchedule
@@ -173,8 +177,7 @@ exports.viewSchedule = (req, res) => {
 exports.editTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body;
     const weeklySchedule = scheduleData[driverId][weekId];
-    const taskData = weeklySchedule.filter(task => task.taskId === Number(taskId))[0]
-    console.log(taskData)
+    const taskData = weeklySchedule.filter(task => task.taskId === Number(taskId))[0];
     res.render('add-task', {
         edit: true,
         taskData
@@ -203,7 +206,6 @@ exports.confirmNewTask = (req, res) => {
         driverId: driverId
     };
     let newTaskData, existingTask;
-    console.log(newSchedule)
 
     newSchedule.forEach(i => {
         const newStart = moment(newTask.startTime, "HH a");
@@ -232,7 +234,32 @@ exports.confirmNewTask = (req, res) => {
 }
 
 exports.confirmUpdatedTask = (req, res) => {
+    const { day, startTimeBlock, endTimeBlock, task, location, description, weekId, driverId, conflictingTaskId, existingTaskId } = req.body;
 
+    const existingSchedule = scheduleData[driverId][weekId];
+    const removeExistingTask = existingSchedule.filter(task => task.taskId !== Number(existingTaskId));
+    const newSchedule = removeExistingTask.filter(task => task.taskId !== Number(conflictingTaskId));
+
+    const updatedTask = {
+        taskId: existingTaskId,
+        day: parseInt(day),
+        startTime: moment(startTimeBlock - 1, 'HH a'),
+        endTime: moment(endTimeBlock - 1, "HH a"),
+        startTimeBlock: startTimeBlock,
+        endTimeBlock: endTimeBlock,
+        task,
+        location,
+        description,
+        weekId: parseInt(weekId),
+        driverId: driverId
+    }
+
+    newSchedule.push(updatedTask);
+    scheduleData[driverId][weekId] = newSchedule;
+
+    res.render('schedule', {
+        weeklySchedule: newSchedule 
+    })  
 }
 
 exports.deleteTask = (req, res) => {

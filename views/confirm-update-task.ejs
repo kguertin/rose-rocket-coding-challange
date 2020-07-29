@@ -3,8 +3,8 @@
     <h1>This driver has a conflicting task during this time block</h1>
     <h3>Do you want to Remove the conflicting task?</h3>
     <form action="/select-schedule" method="POST">
-        <input type="hidden" name="week" value="<%= existingTask.weekId %>">
-        <input type="hidden" name="driver" value="<%= existingTask.driverId %>">
+        <input type="hidden" name="week" value="<%= conflictingTask.weekId %>">
+        <input type="hidden" name="driver" value="<%= conflictingTask.driverId %>">
         <button type="submit" class="btn btn-danger">Cancel</button>
     </form>
     <form action="/confirm-update-task" method="POST">
@@ -16,7 +16,8 @@
         <input type="hidden" name="description" value="<%= newTaskData.description %>">
         <input type="hidden" name="weekId" value="<%= newTaskData.weekId %>">
         <input type="hidden" name="driverId" value="<%= newTaskData.driverId %>">
-        <input type="hidden" name="existingTaskId" value="<%= existingTask.taskId %>">
+        <input type="hidden" name="existingTaskId" value="<%= itemToUpdate.taskId %>">
+        <input type="hidden" name="conflictingTaskId" value="<%=  conflictingTask.taskId %>">
         <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 </div>
