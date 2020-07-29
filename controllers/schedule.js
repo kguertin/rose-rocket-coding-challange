@@ -100,14 +100,14 @@ exports.postTask = (req, res) => {
             driverId: driver
         }]
     }
-
-
+    
+    
     const weeklySchedule = scheduleData[driver][week]
     weeklySchedule.sort((a, b) => {
         return a.day - b.day
     });
-
-   return res.render('schedule', {
+    
+    return res.render('schedule', {
         error: null,
         weeklySchedule
     });
@@ -116,21 +116,39 @@ exports.postTask = (req, res) => {
 exports.updateTask = (req, res) => {
     const { taskId, day, startTime, endTime, task, location, description, week, driverId } = req.body;
     const newSchedule = scheduleData[driverId][week].filter(task => task.taskId !== Number(taskId));
-
+    let existingTask;
+    
     const updatedTask = {
-    taskId: taskId,
-    day: parseInt(day),
-    startTime: moment(startTime, 'HH a'),
-    endTime: moment(endTime, "HH a"),
-    startTimeBlock: parseInt(startTime) + 1,
-    endTimeBlock: parseInt(endTime) + 1,
-    task,
-    location,
-    description,
-    weekId: parseInt(week),
-    driverId: driverId
+        taskId: taskId,
+        day: parseInt(day),
+        startTime: moment(startTime, 'HH a'),
+        endTime: moment(endTime, "HH a"),
+        startTimeBlock: parseInt(startTime) + 1,
+        endTimeBlock: parseInt(endTime) + 1,
+        task,
+        location,
+        description,
+        weekId: parseInt(week),
+        driverId: driverId
     }
+    
+    newSchedule.forEach(i => {
+        const newStart = moment(startTime, "HH a");
+        const newEnd = moment(endTime, 'HH a');
+        const existingRange = moment.range(i.startTime, i.endTime);
+        const newRange = moment.range(newStart, newEnd)
 
+        if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
+            existingTask = i;
+            console.log(existingTask);
+        }
+    })
+    if(existingTask){
+        return res.render('confirm-update-task', {
+            newTaskData: updatedTask,
+            existingTask
+        })
+    }
 
 
     newSchedule.push(updatedTask)
@@ -213,7 +231,9 @@ exports.confirmNewTask = (req, res) => {
     })
 }
 
-exports.confirmUpdatedTask
+exports.confirmUpdatedTask = (req, res) => {
+
+}
 
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body
