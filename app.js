@@ -21,7 +21,6 @@ app.listen(PORT, () => {
 }) 
 
 //download csv file via fs and maybe node library. 
-// make csv file download in browser rather than write to drive
 //readme files
 // selected for edit option
 // style
@@ -29,6 +28,7 @@ app.listen(PORT, () => {
 //change view  schedule to get rather than post
 
 // if we have time:
+// make csv file download in browser rather than write to drive
 //rework how we store data so we can use filter to handle everything
 // deploy
 // ui/ux
