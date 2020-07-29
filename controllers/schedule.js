@@ -71,35 +71,19 @@ exports.postTask = (req, res) => {
         }
     }
 
-    if (scheduleData[driver][week]) {
-        scheduleData[driver][week].push({
-            taskId: Math.random(),
-            day: parseInt(day),
-            startTime: moment(startTime, 'HH a'),
-            endTime: moment(endTime, "HH a"),
-            startTimeBlock: parseInt(startTime) + 1,
-            endTimeBlock: parseInt(endTime) + 1,
-            task,
-            location,
-            description,
-            weekId: parseInt(week),
-            driverId: driver
-            })
-    } else {
-        scheduleData[driver][week] = [{
-            taskId: Math.random(),
-            day: parseInt(day),
-            startTime: moment(startTime, 'HH a'),
-            endTime: moment(endTime, "HH a"),
-            startTimeBlock: parseInt(startTime) + 1,
-            endTimeBlock: parseInt(endTime) + 1,
-            task,
-            location,
-            description,
-            weekId: parseInt(week),
-            driverId: driver
-        }]
-    }
+    scheduleData[driver][week].push({
+        taskId: Math.random(),
+        day: parseInt(day),
+        startTime: moment(startTime, 'HH a'),
+        endTime: moment(endTime, "HH a"),
+        startTimeBlock: parseInt(startTime) + 1,
+        endTimeBlock: parseInt(endTime) + 1,
+        task,
+        location,
+        description,
+        weekId: parseInt(week),
+        driverId: driver
+        })
     
     
     const weeklySchedule = scheduleData[driver][week]

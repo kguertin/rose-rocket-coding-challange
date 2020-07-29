@@ -20,9 +20,8 @@ app.listen(PORT, () => {
     console.log(`Server connected on port ${PORT}`);
 }) 
 
-//download csv file via fs and maybe node library. 
 //readme files
-// selected for edit option
+// selected for edit option 
 // style
 // error handling
 //change view  schedule to get rather than post
