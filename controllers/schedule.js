@@ -4,30 +4,24 @@ const Moment = require('moment');
 const MomentRange = require('moment-range');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter
 
-const { handleInterval2 } = require('../util/functions')
+const { createScheduleData } = require('../util/create_schedule_data');
+const { handleInterval2 } = require('../util/functions');
 
 const moment = MomentRange.extendMoment(Moment);
 
+
 // Schedule "Database"
-const scheduleData = {
-    driver1: {
-
-    },
-    driver2: {
-
-    },
-    driver3: {
-
-    }
-}
+let scheduleData;
 
 exports.getSchedule = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     res.render('schedule', {
         weeklySchedule: []
     });
 }
 
 exports.addTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     res.render('add-task', {
         edit: false,
         taskData: null
@@ -35,6 +29,7 @@ exports.addTask = (req, res) => {
 }
 
 exports.postTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const {driver, task, week, day, startTime, endTime, location, description} = req.body;
 
     if (endTime <= startTime) {
@@ -119,6 +114,7 @@ exports.postTask = (req, res) => {
 }
 
 exports.updateTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const { taskId, day, startTime, endTime, task, location, description, week, driverId } = req.body;
     let conflictingTask, itemToUpdate;
 
@@ -170,6 +166,7 @@ exports.updateTask = (req, res) => {
 }
 
 exports.viewSchedule = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const {driver, week} = req.body
     let weeklySchedule;
     scheduleData[driver][week] ? weeklySchedule = scheduleData[driver][week] : weeklySchedule = [];
@@ -180,6 +177,7 @@ exports.viewSchedule = (req, res) => {
 }
 
 exports.editTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const {weekId, taskId, driverId} = req.body;
     const weeklySchedule = scheduleData[driverId][weekId];
     const taskData = weeklySchedule.filter(task => task.taskId === Number(taskId))[0];
@@ -191,6 +189,7 @@ exports.editTask = (req, res) => {
 }
 
 exports.confirmNewTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const {driverId, weekId, existingTaskId, day, startTimeBlock, endTimeBlock, location, description, task} = req.body;
 
     const existingSchedule = scheduleData[driverId][parseInt(weekId)];
@@ -239,6 +238,7 @@ exports.confirmNewTask = (req, res) => {
 }
 
 exports.confirmUpdatedTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const { day, startTimeBlock, endTimeBlock, task, location, description, weekId, driverId, conflictingTaskId, existingTaskId } = req.body;
     let conflictingTask
     
@@ -287,6 +287,7 @@ exports.confirmUpdatedTask = (req, res) => {
 }
 
 exports.deleteTask = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const {weekId, taskId, driverId} = req.body
 
     const searchSchedule = scheduleData[driverId][weekId];
@@ -299,6 +300,7 @@ exports.deleteTask = (req, res) => {
 }
 
 exports.downloadSchedule = (req, res) => {
+    if (!scheduleData) scheduleData = createScheduleData();
     const { driver} = req.body;
     const scheduleInterval = parseInt(req.body.scheduleInterval);
     const driverSchedule = scheduleData[driver];

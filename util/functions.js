@@ -1,9 +1,8 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const handleInterval2 = (driverSchedule) => {
-    console.log(driverSchedule)
     const csvWriter = createCsvWriter({
-        path: '../CSV_file/schedule.csv',
+        path: 'schedule.csv',
         header: [
             {id: 'timeFrame', title: 'TIME FRAME'},
             {id: 'pickup', title: 'PICK UP'},
@@ -13,7 +12,7 @@ const handleInterval2 = (driverSchedule) => {
     })
 
     let dayCounter = 0;
-    let day = 1;
+    let totalDays = 1;
     const ScheduleData = [];
     let timeFrame; 
     let pickup = 0; 
@@ -21,18 +20,20 @@ const handleInterval2 = (driverSchedule) => {
     let other = 0;
 
     Object.keys(driverSchedule).forEach(i => {
-        for(let x = 1; x <= 7; x++){   
+        for(let day = 1; day <= 7; day++){   
+            if (dayCounter === 0) {
+                timeFrame = `day ${totalDays} - day ${totalDays + 1}`;
+                console.log(timeFrame)
+            }
             driverSchedule[i].forEach(task => {
-                if (dayCounter === 0) {
-                    timeFrame = `day ${day} - day ${day + 1}`;
-                }
+                console.log('task', task)
                 if (day === parseInt(task.day)) {
                     if (task.task === 'pickup') pickup += 1;
                     if (task.task === 'dropoff') dropoff += 1;
                     if (task.task === 'other') dropoff += 1;
                 }
             });
-            day += 1;
+            totalDays += 1;
             dayCounter += 1;
             if (dayCounter === 2) {
                 ScheduleData.push({
@@ -41,7 +42,6 @@ const handleInterval2 = (driverSchedule) => {
                     dropoff,
                     other
                 })
-                console.log(ScheduleData);
                 dayCounter = 0;
                 pickup = 0;
                 dropoff = 0;
@@ -50,7 +50,10 @@ const handleInterval2 = (driverSchedule) => {
         }
     });
 
-    console.log('FINAL: ', ScheduleData);
+    csvWriter.writeRecords(ScheduleData)
+    .then(() => {
+        console.log('Schedule Created');
+    });
 
 }
 
