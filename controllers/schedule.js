@@ -235,10 +235,12 @@ exports.confirmNewTask = (req, res) => {
 
 exports.confirmUpdatedTask = (req, res) => {
     const { day, startTimeBlock, endTimeBlock, task, location, description, weekId, driverId, conflictingTaskId, existingTaskId } = req.body;
-
+    let conflictingTask
+    
     const existingSchedule = scheduleData[driverId][weekId];
     const removeExistingTask = existingSchedule.filter(task => task.taskId !== Number(existingTaskId));
     const newSchedule = removeExistingTask.filter(task => task.taskId !== Number(conflictingTaskId));
+    scheduleData[driverId][weekId] = newSchedule;
 
     const updatedTask = {
         taskId: existingTaskId,
@@ -254,22 +256,36 @@ exports.confirmUpdatedTask = (req, res) => {
         driverId: driverId
     }
 
-    newSchedule.push(updatedTask);
-    scheduleData[driverId][weekId] = newSchedule;
+    newSchedule.forEach(i => {
+        const newStart = moment(updatedTask.startTime, "HH a");
+        const newEnd = moment(updatedTask.endTime, 'HH a');
+        const existingRange = moment.range(i.startTime, i.endTime);
+        const newRange = moment.range(newStart, newEnd)
 
-    res.render('schedule', {
+        if(i.day === parseInt(day) && (newRange.overlaps(existingRange) === true)){
+            conflictingTask = i;
+        }
+    })
+    if(conflictingTask){
+        return res.render('confirm-update-task', {
+            newTaskData: updatedTask,
+            conflictingTask,
+            itemToUpdate: updatedTask
+        })
+    }
+
+    newSchedule.push(updatedTask);
+
+    return res.render('schedule', {
         weeklySchedule: newSchedule 
     })  
 }
 
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body
-    console.log(weekId, taskId, driverId)
 
     const searchSchedule = scheduleData[driverId][weekId];
-    console.log(searchSchedule)
     const updatedTasks = searchSchedule.filter(task => Number(task.taskId) !== Number(taskId));
-    console.log(updatedTasks)
     scheduleData[driverId][weekId] = updatedTasks
     const weeklySchedule = scheduleData[driverId][weekId];
     res.render('schedule', {
