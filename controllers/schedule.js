@@ -292,3 +292,10 @@ exports.deleteTask = (req, res) => {
         weeklySchedule
     })
 }
+
+exports.downloadSchedule = (req, res) => {
+    const { driver, scheduleInterval} = req.body;
+    console.log(scheduleInterval)
+    const driverSchedule = scheduleData[driver]
+    console.log(driverSchedule);
+}

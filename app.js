@@ -20,11 +20,11 @@ app.listen(PORT, () => {
     console.log(`Server connected on port ${PORT}`);
 }) 
 
-// when updating task when one already exists user can choose to delete conflicting task, similar to conflicting new task logic
 //download csv file via fs and maybe node library. 
 //readme files
-// error handling
+// selected for edit option
 // style
+// error handling
 //change view  schedule to get rather than post
 
 // if we have time:

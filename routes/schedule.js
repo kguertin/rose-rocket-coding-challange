@@ -21,5 +21,7 @@ router.post('/edit-task', scheduleController.editTask)
 
 router.post('/delete-task', scheduleController.deleteTask);
 
+router.post('/download-schedule', scheduleController.downloadSchedule);
+
 
 module.exports = router;
