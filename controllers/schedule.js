@@ -131,6 +131,8 @@ exports.updateTask = (req, res) => {
     driverId: driverId
     }
 
+
+
     newSchedule.push(updatedTask)
     scheduleData[driverId][week] = newSchedule
 
@@ -210,6 +212,8 @@ exports.confirmNewTask = (req, res) => {
         weeklySchedule: newSchedule
     })
 }
+
+exports.confirmUpdatedTask
 
 exports.deleteTask = (req, res) => {
     const {weekId, taskId, driverId} = req.body

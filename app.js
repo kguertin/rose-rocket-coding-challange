@@ -29,6 +29,5 @@ app.listen(PORT, () => {
 
 // if we have time:
 //rework how we store data so we can use filter to handle everything
-//rework how we handle time 
 // deploy
 // ui/ux
