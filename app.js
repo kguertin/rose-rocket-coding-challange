@@ -21,6 +21,7 @@ app.listen(PORT, () => {
 }) 
 
 //download csv file via fs and maybe node library. 
+// make csv file download in browser rather than write to drive
 //readme files
 // selected for edit option
 // style
