@@ -4,6 +4,8 @@ const Moment = require('moment');
 const MomentRange = require('moment-range');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter
 
+const { handleInterval2 } = require('../util/functions')
+
 const moment = MomentRange.extendMoment(Moment);
 
 // Schedule "Database"
@@ -297,7 +299,14 @@ exports.deleteTask = (req, res) => {
 }
 
 exports.downloadSchedule = (req, res) => {
-    const { driver, scheduleInterval} = req.body;
-    const driverSchedule = scheduleData[driver]
-    console.log(driverSchedule);
+    const { driver} = req.body;
+    const scheduleInterval = parseInt(req.body.scheduleInterval);
+    const driverSchedule = scheduleData[driver];
+
+    switch(scheduleInterval) {
+        case 2:
+            handleInterval2(driverSchedule);
+            break;
+    }
+
 }
