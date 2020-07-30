@@ -21,7 +21,6 @@ app.listen(PORT, () => {
 }) 
 
 //readme files
-// selected for edit option 
 // style
 // error handling
 //change view  schedule to get rather than post

@@ -24,78 +24,78 @@
             </select>
             <label for="day">Select Day</label>
             <select name="day" id="day">
-                <option value="1">Sunday</option>
-                <option value="2">Monday</option>
-                <option value="3">Tuesday</option>
-                <option value="4">Wednesday</option>
-                <option value="5">Thursday</option>
-                <option value="6">Friday</option>
-                <option value="7">Saturday</option>
+                <option value="1" <% if(edit) { if(parseInt(taskData.day) === 1) { %> selected <% }} %>>Sunday</option>
+                <option value="2" <% if(edit) { if(parseInt(taskData.day) === 2) { %> selected <% }} %>>Monday</option>
+                <option value="3" <% if(edit) { if(parseInt(taskData.day) === 3) { %> selected <% }} %>>Tuesday</option>
+                <option value="4" <% if(edit) { if(parseInt(taskData.day) === 4) { %> selected <% }} %>>Wednesday</option>
+                <option value="5" <% if(edit) { if(parseInt(taskData.day) === 5) { %> selected <% }} %>>Thursday</option>
+                <option value="6" <% if(edit) { if(parseInt(taskData.day) === 6) { %> selected <% }} %>>Friday</option>
+                <option value="7" <% if(edit) { if(parseInt(taskData.day) === 7) { %> selected <% }} %>>Saturday</option>
             </select>
             <div class="form-group">
                 <label for="task">Task Type</label>
                 <select name="task" id="task">
-                    <option value="pickup">Pick Up</option>
-                    <option value="dropoff">Drop Off</option>
-                    <option value="other">Other</option>
+                    <option value="pickup" <% if(edit) { if(taskData.task === 'pickup') { %> selected <% }} %>>Pick Up</option>
+                    <option value="dropoff" <% if(edit) { if(taskData.task === 'dropoff') { %> selected <% }} %>>Drop Off</option>
+                    <option value="other" <% if(edit) { if(taskData.task === 'other') { %> selected <% }} %>>Other</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="startTime">Start Time:</label>
                 <select name="startTime" id="startTime">
-                    <option value="0">00:00</option>
-                    <option value="1">01:00</option>
-                    <option value="2">02:00</option>
-                    <option value="3">03:00</option>
-                    <option value="4">04:00</option>
-                    <option value="5">05:00</option>
-                    <option value="6">06:00</option>
-                    <option value="7">07:00</option>
-                    <option value="8">08:00</option>
-                    <option value="9">09:00</option>
-                    <option value="10">10:00</option>
-                    <option value="11">11:00</option>
-                    <option value="12">12:00</option>
-                    <option value="13">13:00</option>
-                    <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                    <option value="17">17:00</option>
-                    <option value="18">18:00</option>
-                    <option value="19">19:00</option>
-                    <option value="20">20:00</option>
-                    <option value="21">21:00</option>
-                    <option value="22">22:00</option>
-                    <option value="23">23:00</option>
+                    <option value="0" <% if(edit) { if(taskData.startTimeBlock === 1) { %> selected <% }} %>>00:00</option>
+                    <option value="1" <% if(edit) { if(taskData.startTimeBlock === 2) { %> selected <% }} %>>01:00</option>
+                    <option value="2" <% if(edit) { if(taskData.startTimeBlock === 3) { %> selected <% }} %>>02:00</option>
+                    <option value="3" <% if(edit) { if(taskData.startTimeBlock === 4) { %> selected <% }} %>>03:00</option>
+                    <option value="4" <% if(edit) { if(taskData.startTimeBlock === 5) { %> selected <% }} %>>04:00</option>
+                    <option value="5" <% if(edit) { if(taskData.startTimeBlock === 6) { %> selected <% }} %>>05:00</option>
+                    <option value="6" <% if(edit) { if(taskData.startTimeBlock === 7) { %> selected <% }} %>>06:00</option>
+                    <option value="7" <% if(edit) { if(taskData.startTimeBlock === 8) { %> selected <% }} %>>07:00</option>
+                    <option value="8" <% if(edit) { if(taskData.startTimeBlock === 9) { %> selected <% }} %>>08:00</option>
+                    <option value="9" <% if(edit) { if(taskData.startTimeBlock === 10) { %> selected <% }} %>>09:00</option>
+                    <option value="10" <% if(edit) { if(taskData.startTimeBlock === 11) { %> selected <% }} %>>10:00</option>
+                    <option value="11" <% if(edit) { if(taskData.startTimeBlock === 12) { %> selected <% }} %>>11:00</option>
+                    <option value="12" <% if(edit) { if(taskData.startTimeBlock === 13) { %> selected <% }} %>>12:00</option>
+                    <option value="13" <% if(edit) { if(taskData.startTimeBlock === 14) { %> selected <% }} %>>13:00</option>
+                    <option value="14" <% if(edit) { if(taskData.startTimeBlock === 15) { %> selected <% }} %>>14:00</option>
+                    <option value="15" <% if(edit) { if(taskData.startTimeBlock === 16) { %> selected <% }} %>>15:00</option>
+                    <option value="16" <% if(edit) { if(taskData.startTimeBlock === 17) { %> selected <% }} %>>16:00</option>
+                    <option value="17" <% if(edit) { if(taskData.startTimeBlock === 18) { %> selected <% }} %>>17:00</option>
+                    <option value="18" <% if(edit) { if(taskData.startTimeBlock === 19) { %> selected <% }} %>>18:00</option>
+                    <option value="19" <% if(edit) { if(taskData.startTimeBlock === 20) { %> selected <% }} %>>19:00</option>
+                    <option value="20" <% if(edit) { if(taskData.startTimeBlock === 21) { %> selected <% }} %>>20:00</option>
+                    <option value="21" <% if(edit) { if(taskData.startTimeBlock === 22) { %> selected <% }} %>>21:00</option>
+                    <option value="22" <% if(edit) { if(taskData.startTimeBlock === 23) { %> selected <% }} %>>22:00</option>
+                    <option value="23" <% if(edit) { if(taskData.startTimeBlock === 24) { %> selected <% }} %>>23:00</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="endTime">End Time:</label>
                 <select name="endTime" id="endTime">
-                    <option value="1">01:00</option>
-                    <option value="2">02:00</option>
-                    <option value="3">03:00</option>
-                    <option value="4">04:00</option>
-                    <option value="5">05:00</option>
-                    <option value="6">06:00</option>
-                    <option value="7">07:00</option>
-                    <option value="8">08:00</option>
-                    <option value="9">09:00</option>
-                    <option value="10">10:00</option>
-                    <option value="11">11:00</option>
-                    <option value="12">12:00</option>
-                    <option value="13">13:00</option>
-                    <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                    <option value="17">17:00</option>
-                    <option value="18">18:00</option>
-                    <option value="19">19:00</option>
-                    <option value="20">20:00</option>
-                    <option value="21">21:00</option>
-                    <option value="22">22:00</option>
-                    <option value="23">23:00</option>
-                    <option value="24">00:00</option>
+                    <option value="1" <% if(edit) { if(taskData.endTimeBlock === 2) { %> selected <% }} %>>01:00</option>
+                    <option value="2" <% if(edit) { if(taskData.endTimeBlock === 3) { %> selected <% }} %>>02:00</option>
+                    <option value="3" <% if(edit) { if(taskData.endTimeBlock === 4) { %> selected <% }} %>>03:00</option>
+                    <option value="4" <% if(edit) { if(taskData.endTimeBlock === 5) { %> selected <% }} %>>04:00</option>
+                    <option value="5" <% if(edit) { if(taskData.endTimeBlock === 6) { %> selected <% }} %>>05:00</option>
+                    <option value="6" <% if(edit) { if(taskData.endTimeBlock === 7) { %> selected <% }} %>>06:00</option>
+                    <option value="7" <% if(edit) { if(taskData.endTimeBlock === 8) { %> selected <% }} %>>07:00</option>
+                    <option value="8" <% if(edit) { if(taskData.endTimeBlock === 9) { %> selected <% }} %>>08:00</option>
+                    <option value="9" <% if(edit) { if(taskData.endTimeBlock === 10) { %> selected <% }} %>>09:00</option>
+                    <option value="10" <% if(edit) { if(taskData.endTimeBlock === 11) { %> selected <% }} %>>10:00</option>
+                    <option value="11" <% if(edit) { if(taskData.endTimeBlock === 12) { %> selected <% }} %>>11:00</option>
+                    <option value="12" <% if(edit) { if(taskData.endTimeBlock === 13) { %> selected <% }} %>>12:00</option>
+                    <option value="13" <% if(edit) { if(taskData.endTimeBlock === 14) { %> selected <% }} %>>13:00</option>
+                    <option value="14" <% if(edit) { if(taskData.endTimeBlock === 15) { %> selected <% }} %>>14:00</option>
+                    <option value="15" <% if(edit) { if(taskData.endTimeBlock === 16) { %> selected <% }} %>>15:00</option>
+                    <option value="16" <% if(edit) { if(taskData.endTimeBlock === 17) { %> selected <% }} %>>16:00</option>
+                    <option value="17" <% if(edit) { if(taskData.endTimeBlock === 18) { %> selected <% }} %>>17:00</option>
+                    <option value="18" <% if(edit) { if(taskData.endTimeBlock === 19) { %> selected <% }} %>>18:00</option>
+                    <option value="19" <% if(edit) { if(taskData.endTimeBlock === 20) { %> selected <% }} %>>19:00</option>
+                    <option value="20" <% if(edit) { if(taskData.endTimeBlock === 21) { %> selected <% }} %>>20:00</option>
+                    <option value="21" <% if(edit) { if(taskData.endTimeBlock === 22) { %> selected <% }} %>>21:00</option>
+                    <option value="22" <% if(edit) { if(taskData.endTimeBlock === 23) { %> selected <% }} %>>22:00</option>
+                    <option value="23" <% if(edit) { if(taskData.endTimeBlock === 24) { %> selected <% }} %>>23:00</option>
+                    <option value="24" <% if(edit) { if(taskData.endTimeBlock === 25) { %> selected <% }} %>>00:00</option>
                 </select>
             </div>
             <div class="form-group">

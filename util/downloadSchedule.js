@@ -26,7 +26,6 @@ const handleInterval = (driverSchedule, scheduleInterval) => {
                 console.log(timeFrame)
             }
             driverSchedule[i].forEach(task => {
-                console.log('task', task)
                 if (day === parseInt(task.day)) {
                     if (task.task === 'pickup') pickup += 1;
                     if (task.task === 'dropoff') dropoff += 1;

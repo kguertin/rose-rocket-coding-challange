@@ -31,7 +31,7 @@
 }
 
 .time {
-    height: 8rem;
+    height: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,11 +43,18 @@
     color: #fff;
     border: 1px solid #444;
     text-align: center;
-    height: 8rem;
+    padding: .75rem;
 }
+
+.time-block p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
 .time-block .button-group {
     display: flex;
     justify-content: space-evenly;
+    margin-top: .75rem;
 }
 
  

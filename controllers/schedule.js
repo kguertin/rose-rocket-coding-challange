@@ -166,6 +166,7 @@ exports.editTask = (req, res) => {
     const weeklySchedule = scheduleData[driverId][weekId];
     console.log(weeklySchedule)
     const taskData = weeklySchedule.filter(task => Number(task.taskId) === Number(taskId))[0];
+    console.log(taskData)
     res.render('add-task', {
         edit: true,
         taskData
@@ -237,8 +238,8 @@ exports.confirmUpdatedTask = (req, res) => {
         day: parseInt(day),
         startTime: moment(startTimeBlock - 1, 'HH a'),
         endTime: moment(endTimeBlock - 1, "HH a"),
-        startTimeBlock: startTimeBlock,
-        endTimeBlock: endTimeBlock,
+        startTimeBlock: parseInt(startTimeBlock),
+        endTimeBlock: parseInt(endTimeBlock),
         task,
         location,
         description,
