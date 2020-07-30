@@ -20,10 +20,7 @@ app.listen(PORT, () => {
     console.log(`Server connected on port ${PORT}`);
 }) 
 
-//readme files
 // style
-// error handling
-//change view  schedule to get rather than post
 
 // if we have time:
 // make csv file download in browser rather than write to drive

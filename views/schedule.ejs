@@ -48,6 +48,15 @@
                 <button type="submit">Download</button>
             </form>
         </div>
+        <% if(error) { %>
+            <div class="error-header">
+                <h1><%= error %></h1>
+            </div>
+        <% } else if(!weeklySchedule.length) { %>
+            <div class="no-task-header">
+                <h1>Please select a driver and week to view tasks</h1>
+            </div>
+        <% } else { %>
         <div class="schedule">
             <div class="week">
                 <div></div>
@@ -273,4 +282,5 @@
                                     </div>
                                 </div>
                             </div>
+                            <% } %>
 <%- include('./includes/foot.ejs') %>

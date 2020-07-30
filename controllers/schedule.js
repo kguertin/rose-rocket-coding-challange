@@ -16,6 +16,7 @@ let scheduleData;
 exports.getSchedule = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     res.render('schedule', {
+        error: null,
         weeklySchedule: []
     });
 }
@@ -32,7 +33,7 @@ exports.postTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {driver, task, week, day, startTime, endTime, location, description} = req.body;
 
-    if (endTime <= startTime) {
+    if (moment(startTime).isAfter(endTime)) {
         return res.render('schedule', {
         error: "Task end time should be after start time",
         weeklySchedule: []
@@ -145,6 +146,7 @@ exports.updateTask = (req, res) => {
     newSchedule.push(updatedTask);
 
     return res.render('schedule', {
+        error: null,
         weeklySchedule: newSchedule
     })
     
@@ -157,6 +159,7 @@ exports.viewSchedule = (req, res) => {
     scheduleData[driver][week] ? weeklySchedule = scheduleData[driver][week] : weeklySchedule = [];
     
     res.render('schedule', {
+        error: null,
         weeklySchedule
     })
 }
@@ -218,6 +221,7 @@ exports.confirmNewTask = (req, res) => {
     scheduleData[driverId][parseInt(weekId)] = newSchedule
 
     return res.render('schedule', {
+        error: null,
         weeklySchedule: newSchedule
     })
 }
@@ -267,6 +271,7 @@ exports.confirmUpdatedTask = (req, res) => {
     newSchedule.push(updatedTask);
 
     return res.render('schedule', {
+        error: null, 
         weeklySchedule: newSchedule 
     })  
 }
@@ -280,6 +285,7 @@ exports.deleteTask = (req, res) => {
     scheduleData[driverId][weekId] = updatedTasks
     const weeklySchedule = scheduleData[driverId][weekId];
     res.render('schedule', {
+        error: null,
         weeklySchedule
     })
 }
@@ -292,6 +298,7 @@ exports.downloadSchedule = (req, res) => {
 
     handleInterval(driverSchedule, scheduleInterval)
     res.status(200).render('schedule', {
+        error: null,
         weeklySchedule: driverSchedule['1']
     })
 
