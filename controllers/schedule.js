@@ -164,7 +164,8 @@ exports.editTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {weekId, taskId, driverId} = req.body;
     const weeklySchedule = scheduleData[driverId][weekId];
-    const taskData = weeklySchedule.filter(task => task.taskId === Number(taskId))[0];
+    console.log(weeklySchedule)
+    const taskData = weeklySchedule.filter(task => Number(task.taskId) === Number(taskId))[0];
     res.render('add-task', {
         edit: true,
         taskData

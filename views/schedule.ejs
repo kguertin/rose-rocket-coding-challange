@@ -1,10 +1,12 @@
 <%- include('./includes/head.ejs') %>
-<div class="schedule-options">
-    <div class="add-task-button">
-        <form action="/add-task" method="GET">
-        <input type="submit" value="Add Task">
-    </form>
-    </div>
+<div class="container">
+
+    <div class="schedule-options">
+        <div class="add-task-button">
+            <form action="/add-task" method="GET">
+                <input type="submit" value="Add Task">
+            </form>
+        </div>
         <form action="/select-schedule" method="POST">
             <div class="form-group driver-select">
                 <label for="drivers">Drivers: </label>
@@ -19,255 +21,256 @@
                 <select name="week" id="week">
                     <% for(let i = 1; i <= 52; i++) { %>
                         <option value="<%= i %>">Week <%= i %></option>
-                    <% } %>
-                </select>
-            </div>
-            <button type="submit">View Schedule</button>
-        </form>
-        <form action="/download-schedule" method="POST">
-            <div class="form-group driver-select">
-                <label for="drivers">Drivers: </label>
-                <select name="driver" id="drivers">
-                    <option value="driver1">Driver 1</option>
-                    <option value="driver2">Driver 2</option>
-                    <option value="driver3">Driver 3</option>
-                </select>
-            </div>
-            <div class="download-schedule">
-                <label for="scheduleInterval">Download Schedule: </label>
-                <select name="scheduleInterval" id="scheduleInterval">
-                    <option value="2">2 Days</option>
-                    <option value="4">4 Days</option>
-                    <option value="7">7 Days</option>
-                    <option value="14">14 Days</option>
-                    <option value="28">28 Days</option>
-                </select>
-            </div>
-            <button type="submit">Download</button>
-        </form>
-    </div>
-    <div class="schedule">
-        <div class="week">
-            <div></div>
-            <div class="day">Sunday</div>
-            <div class="day">Monday</div>
-            <div class="day">Tuesday</div>
-            <div class="day">Wednesday</div>
-            <div class="day">Thursday</div>
-            <div class="day">Friday</div>
-            <div class="day">Saturday</div>
+                        <% } %>
+                    </select>
+                </div>
+                <button type="submit">View Schedule</button>
+            </form>
+            <form action="/download-schedule" method="POST">
+                <div class="form-group driver-select">
+                    <label for="drivers">Drivers: </label>
+                    <select name="driver" id="drivers">
+                        <option value="driver1">Driver 1</option>
+                        <option value="driver2">Driver 2</option>
+                        <option value="driver3">Driver 3</option>
+                    </select>
+                </div>
+                <div class="download-schedule">
+                    <label for="scheduleInterval">Download Schedule: </label>
+                    <select name="scheduleInterval" id="scheduleInterval">
+                        <option value="2">2 Days</option>
+                        <option value="4">4 Days</option>
+                        <option value="7">7 Days</option>
+                        <option value="14">14 Days</option>
+                        <option value="28">28 Days</option>
+                    </select>
+                </div>
+                <button type="submit">Download</button>
+            </form>
         </div>
-        <div class="scheduled-times">
-            
-            <div class="times">
-                <div class="time"><p>00:00</p></div>
-                <div class="time"><p>01:00</p></div>
-                <div class="time"><p>02:00</p></div>
-                <div class="time"><p>03:00</p></div>
-                <div class="time"><p>04:00</p></div>
-                <div class="time"><p>05:00</p></div>
-                <div class="time"><p>06:00</p></div>
-                <div class="time"><p>07:00</p></div>
-                <div class="time"><p>08:00</p></div>
-                <div class="time"><p>09:00</p></div>
-                <div class="time"><p>10:00</p></div>
-                <div class="time"><p>11:00</p></div>
-                <div class="time"><p>12:00</p></div>
-                <div class="time"><p>13:00</p></div>
-                <div class="time"><p>14:00</p></div>
-                <div class="time"><p>15:00</p></div>
-                <div class="time"><p>16:00</p></div>
-                <div class="time"><p>17:00</p></div>
-                <div class="time"><p>18:00</p></div>
-                <div class="time"><p>19:00</p></div>
-                <div class="time"><p>20:00</p></div>
-                <div class="time"><p>21:00</p></div>
-                <div class="time"><p>22:00</p></div>
-                <div class="time"><p>23:00</p></div>
+        <div class="schedule">
+            <div class="week">
+                <div></div>
+                <div class="day">Sunday</div>
+                <div class="day">Monday</div>
+                <div class="day">Tuesday</div>
+                <div class="day">Wednesday</div>
+                <div class="day">Thursday</div>
+                <div class="day">Friday</div>
+                <div class="day">Saturday</div>
             </div>
-            <div class="day-schedule">
-
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 1) { %>
-                        <div class="time-block <%= task.taskSpan %>" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+            <div class="scheduled-times">
+                
+                <div class="times">
+                    <div class="time"><p>00:00</p></div>
+                    <div class="time"><p>01:00</p></div>
+                    <div class="time"><p>02:00</p></div>
+                    <div class="time"><p>03:00</p></div>
+                    <div class="time"><p>04:00</p></div>
+                    <div class="time"><p>05:00</p></div>
+                    <div class="time"><p>06:00</p></div>
+                    <div class="time"><p>07:00</p></div>
+                    <div class="time"><p>08:00</p></div>
+                    <div class="time"><p>09:00</p></div>
+                    <div class="time"><p>10:00</p></div>
+                    <div class="time"><p>11:00</p></div>
+                    <div class="time"><p>12:00</p></div>
+                    <div class="time"><p>13:00</p></div>
+                    <div class="time"><p>14:00</p></div>
+                    <div class="time"><p>15:00</p></div>
+                    <div class="time"><p>16:00</p></div>
+                    <div class="time"><p>17:00</p></div>
+                    <div class="time"><p>18:00</p></div>
+                    <div class="time"><p>19:00</p></div>
+                    <div class="time"><p>20:00</p></div>
+                    <div class="time"><p>21:00</p></div>
+                    <div class="time"><p>22:00</p></div>
+                    <div class="time"><p>23:00</p></div>
+                </div>
+                <div class="day-schedule">
+                    
+                    <% weeklySchedule.forEach(task => { %>
+                        <% if(task.day === 1) { %>
+                            <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                <h6><%= task.task %></h6>
+                                <p><%= task.location %></p>
+                                <p><%= task.description %></p>
+                                <div class="button-group">
+                                    <form action="/edit-task" method="POST">
+                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                    </form>
+                                    <form action="/delete-task" method="POST">
+                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </div>
+                            <% } %>
+                            
+                            <% }) %>
                         </div>
+                        <div class="day-schedule">
+                            <% weeklySchedule.forEach(task => { %>
+                                <% if(task.day === 2) { %>
+                                    <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                        <h6><%= task.task %></h6>
+                                        <p><%= task.location %></p>
+                                        <p><%= task.description %></p>
+                                        <div class="button-group">
+                                            <form action="/edit-task" method="POST">
+                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                            </form>
+                                            <form action="/delete-task" method="POST">
+                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    
+                                    <% }) %>
+                                </div>
+                                <div class="day-schedule">
+                                    <% weeklySchedule.forEach(task => { %>
+                                        <% if(task.day === 3) { %>
+                                            <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                                <h6><%= task.task %></h6>
+                                                <p><%= task.location %></p>
+                                                <p><%= task.description %></p>
+                                                <div class="button-group">
+                                                    <form action="/edit-task" method="POST">
+                                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                                    </form>
+                                                    <form action="/delete-task" method="POST">
+                                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                            
+                                            <% }) %>
+                                        </div>
+                                        <div class="day-schedule">
+                                            <% weeklySchedule.forEach(task => { %>
+                                                <% if(task.day === 4) { %>
+                                                    <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                                        <h6><%= task.task %></h6>
+                                                        <p><%= task.location %></p>
+                                                        <p><%= task.description %></p>
+                                                        <div class="button-group">
+                                                            <form action="/edit-task" method="POST">
+                                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                                            </form>
+                                                            <form action="/delete-task" method="POST">
+                                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                     <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 2) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                    
+                    <% }) %>
+                </div>
+                <div class="day-schedule">
+                    <% weeklySchedule.forEach(task => { %>
+                        <% if(task.day === 5) { %>
+                            <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                <h6><%= task.task %></h6>
+                                <p><%= task.location %></p>
+                                <p><%= task.description %></p>
+                                <div class="button-group">
+                                    <form action="/edit-task" method="POST">
+                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                    </form>
+                                    <form action="/delete-task" method="POST">
+                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </div>
+                            <% } %>
+                            
+                            <% }) %>
                         </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 3) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                        <div class="day-schedule">
+                            <% weeklySchedule.forEach(task => { %>
+                                <% if(task.day === 6) { %>
+                                    <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                        <h6><%= task.task %></h6>
+                                        <p><%= task.location %></p>
+                                        <p><%= task.description %></p>
+                                        <div class="button-group">
+                                            <form action="/edit-task" method="POST">
+                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                            </form>
+                                            <form action="/delete-task" method="POST">
+                                                <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    
+                                    <% }) %>
+                                </div>
+                                <div class="day-schedule">
+                                    <% weeklySchedule.forEach(task => { %>
+                                        <% if(task.day === 7) { %>
+                                            <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
+                                                <h6><%= task.task %></h6>
+                                                <p><%= task.location %></p>
+                                                <p><%= task.description %></p>
+                                                <div class="button-group">
+                                                    <form action="/edit-task" method="POST">
+                                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                                    </form>
+                                                    <form action="/delete-task" method="POST">
+                                                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                                                        <input type="hidden" name="weekId" value="<%= task.weekId %>">
+                                                        <input type="hidden" name="driverId" value="<%= task.driverId %>">
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                            
+                                            <% }) %>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 4) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 5) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 6) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-            <div class="day-schedule">
-                <% weeklySchedule.forEach(task => { %>
-                    <% if(task.day === 7) { %>
-                        <div class="time-block" style="grid-row-start:<%= task.startTimeBlock %>; grid-row-end: <%= task.endTimeBlock %>">
-                            <h6><%= task.task %></h6>
-                            <p><%= task.location %></p>
-                            <p><%= task.description %></p>
-                            <div class="button-group">
-                                <form action="/edit-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                                </form>
-                                <form action="/delete-task" method="POST">
-                                    <input type="hidden" name="taskId" value="<%= task.taskId %>">
-                                    <input type="hidden" name="weekId" value="<%= task.weekId %>">
-                                    <input type="hidden" name="driverId" value="<%= task.driverId %>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <% } %>
-
-                <% }) %>
-            </div>
-        </div>
-    </div>
 <%- include('./includes/foot.ejs') %>
