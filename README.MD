@@ -11,7 +11,14 @@ Then the user can run the application by running the following in the terminal
 npm start
 ```
 ### Application Usage
+##### Add Task
+Users can add a task by clicking Add Task and filling in the task information for the desired driver. The app will then redirect to the week with the new task. If a user attempts to add a task that conflicts with an existing task for that driver the user will be prompted to comfirm that they want to remove the exisitng task.
 
+##### View Driver Schedule
+Users can select a driver and week and see existing tasks for that week.
+
+###### Download CSV file
+Users can select a drive and the days by which the breakdown is grouped and then generate a csv file on the server. 
 
 ### Technologies
 node v12.18.0  
