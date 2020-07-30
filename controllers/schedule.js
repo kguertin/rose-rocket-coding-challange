@@ -103,9 +103,9 @@ exports.updateTask = (req, res) => {
     let conflictingTask, itemToUpdate;
 
     scheduleData[driverId][week].forEach(task => {
-        if (task.taskId === Number(taskId)) itemToUpdate = task;
+        if (Number(task.taskId) === Number(taskId)) itemToUpdate = task;
     })
-    const newSchedule = scheduleData[driverId][week].filter(task => task.taskId !== Number(taskId));
+    const newSchedule = scheduleData[driverId][week].filter(task => Number(task.taskId) !== Number(taskId));
     
     const updatedTask = {
         taskId: taskId,
@@ -131,6 +131,7 @@ exports.updateTask = (req, res) => {
             conflictingTask = i;
         }
     })
+
     if(conflictingTask){
         return res.render('confirm-update-task', {
             newTaskData: updatedTask,
@@ -164,9 +165,7 @@ exports.editTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {weekId, taskId, driverId} = req.body;
     const weeklySchedule = scheduleData[driverId][weekId];
-    console.log(weeklySchedule)
     const taskData = weeklySchedule.filter(task => Number(task.taskId) === Number(taskId))[0];
-    console.log(taskData)
     res.render('add-task', {
         edit: true,
         taskData
@@ -178,8 +177,8 @@ exports.confirmNewTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {driverId, weekId, existingTaskId, day, startTimeBlock, endTimeBlock, location, description, task} = req.body;
 
-    const existingSchedule = scheduleData[driverId][parseInt(weekId)];
-    const newSchedule = existingSchedule.filter(task =>  task.taskId !== Number(existingTaskId));
+    const existingSchedule = scheduleData[driverId][weekId];
+    const newSchedule = existingSchedule.filter(task =>  Number(task.taskId) !== Number(existingTaskId));
     scheduleData[driverId][parseInt(weekId)] = newSchedule;
 
     const newTask = {
@@ -234,7 +233,7 @@ exports.confirmUpdatedTask = (req, res) => {
     scheduleData[driverId][weekId] = newSchedule;
 
     const updatedTask = {
-        taskId: existingTaskId,
+        taskId: Number(existingTaskId),
         day: parseInt(day),
         startTime: moment(startTimeBlock - 1, 'HH a'),
         endTime: moment(endTimeBlock - 1, "HH a"),
