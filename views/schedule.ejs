@@ -1,16 +1,19 @@
 <%- include('./includes/head.ejs') %>
 <div class="container">
+    <div class="schedule-header">
+        <h1>Rose Rocket Dispatcher Challange</h1>
+    </div>
 
     <div class="schedule-options">
         <div class="add-task-button">
             <form action="/add-task" method="GET">
-                <input type="submit" value="Add Task">
+                <button class="btn btn-primary" type="submit">Add Task</button>
             </form>
         </div>
         <form action="/select-schedule" method="POST">
             <div class="form-group driver-select">
                 <label for="drivers">Drivers: </label>
-                <select name="driver" id="drivers">
+                <select class="form-control" name="driver" id="drivers">
                     <option value="driver1">Driver 1</option>
                     <option value="driver2">Driver 2</option>
                     <option value="driver3">Driver 3</option>
@@ -18,18 +21,18 @@
             </div>
             <div class="form-group select-week">
                 <label for="week">View Week</label>
-                <select name="week" id="week">
+                <select class="form-control" name="week" id="week">
                     <% for(let i = 1; i <= 52; i++) { %>
                         <option value="<%= i %>">Week <%= i %></option>
                         <% } %>
                     </select>
                 </div>
-                <button type="submit">View Schedule</button>
+                <button type="submit" class="btn btn-secondary">View Schedule</button>
             </form>
             <form action="/download-schedule" method="POST">
                 <div class="form-group driver-select">
                     <label for="drivers">Drivers: </label>
-                    <select name="driver" id="drivers">
+                    <select class="form-control" name="driver" id="drivers">
                         <option value="driver1">Driver 1</option>
                         <option value="driver2">Driver 2</option>
                         <option value="driver3">Driver 3</option>
@@ -37,7 +40,7 @@
                 </div>
                 <div class="download-schedule">
                     <label for="scheduleInterval">Download Schedule: </label>
-                    <select name="scheduleInterval" id="scheduleInterval">
+                    <select class="form-control" name="scheduleInterval" id="scheduleInterval">
                         <option value="2">2 Days</option>
                         <option value="4">4 Days</option>
                         <option value="7">7 Days</option>
@@ -45,13 +48,19 @@
                         <option value="28">28 Days</option>
                     </select>
                 </div>
-                <button type="submit">Download</button>
+                <button type="submit" class="btn btn-dark">Download</button>
             </form>
         </div>
         <% if(error) { %>
-            <div class="error-header">
-                <h1><%= error %></h1>
-            </div>
+            <% if(error.err === 'time-issue') { %>
+                <div class="error-header">
+                    <h1><%= error.msg %></h1>
+                </div>
+            <% } else if (error.err = 'driver-no-tasks') { %>
+                <div class="error-header">
+                    <h1><%= error.msg %></h1>
+                </div>
+            <% } %>
         <% } else if(!weeklySchedule.length) { %>
             <div class="no-task-header">
                 <h1>Please select a driver and week to view tasks</h1>
@@ -59,7 +68,7 @@
         <% } else { %>
         <div class="schedule">
             <div class="week">
-                <div></div>
+                <div class="day">Time Block</div>
                 <div class="day">Sunday</div>
                 <div class="day">Monday</div>
                 <div class="day">Tuesday</div>
@@ -71,30 +80,30 @@
             <div class="scheduled-times">
                 
                 <div class="times">
-                    <div class="time"><p>00:00</p></div>
-                    <div class="time"><p>01:00</p></div>
-                    <div class="time"><p>02:00</p></div>
-                    <div class="time"><p>03:00</p></div>
-                    <div class="time"><p>04:00</p></div>
-                    <div class="time"><p>05:00</p></div>
-                    <div class="time"><p>06:00</p></div>
-                    <div class="time"><p>07:00</p></div>
-                    <div class="time"><p>08:00</p></div>
-                    <div class="time"><p>09:00</p></div>
-                    <div class="time"><p>10:00</p></div>
-                    <div class="time"><p>11:00</p></div>
-                    <div class="time"><p>12:00</p></div>
-                    <div class="time"><p>13:00</p></div>
-                    <div class="time"><p>14:00</p></div>
-                    <div class="time"><p>15:00</p></div>
-                    <div class="time"><p>16:00</p></div>
-                    <div class="time"><p>17:00</p></div>
-                    <div class="time"><p>18:00</p></div>
-                    <div class="time"><p>19:00</p></div>
-                    <div class="time"><p>20:00</p></div>
-                    <div class="time"><p>21:00</p></div>
-                    <div class="time"><p>22:00</p></div>
-                    <div class="time"><p>23:00</p></div>
+                    <div class="time"><p>00:00 - 01:00</p></div>
+                    <div class="time"><p>01:00 - 02:00</p></div>
+                    <div class="time"><p>02:00 - 03:00</p></div>
+                    <div class="time"><p>03:00 - 04:00</p></div>
+                    <div class="time"><p>04:00 - 05:00</p></div>
+                    <div class="time"><p>05:00 - 06:00</p></div>
+                    <div class="time"><p>06:00 - 07:00</p></div>
+                    <div class="time"><p>07:00 - 08:00</p></div>
+                    <div class="time"><p>08:00 - 09:00</p></div>
+                    <div class="time"><p>09:00 - 10:00</p></div>
+                    <div class="time"><p>10:00 - 11:00</p></div>
+                    <div class="time"><p>11:00 - 12:00</p></div>
+                    <div class="time"><p>12:00 - 13:00</p></div>
+                    <div class="time"><p>13:00 - 14:00</p></div>
+                    <div class="time"><p>14:00 - 15:00</p></div>
+                    <div class="time"><p>15:00 - 16:00</p></div>
+                    <div class="time"><p>16:00 - 17:00</p></div>
+                    <div class="time"><p>17:00 - 18:00</p></div>
+                    <div class="time"><p>18:00 - 19:00</p></div>
+                    <div class="time"><p>19:00 - 20:00</p></div>
+                    <div class="time"><p>20:00 - 21:00</p></div>
+                    <div class="time"><p>21:00 - 22:00</p></div>
+                    <div class="time"><p>22:00 - 23:00</p></div>
+                    <div class="time"><p>23:00 - 00:00</p></div>
                 </div>
                 <div class="day-schedule">
                     

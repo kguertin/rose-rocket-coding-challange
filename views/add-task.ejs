@@ -1,77 +1,85 @@
 <%- include('./includes/head.ejs') %>
 <div class="container">
-    <div class="add-task">
-        <% if(edit) { %>
-            <form action="/update-task" method="post">
-        <% } else { %>
-            <form action="/add-task" method="post">
-        <% } %>
-        <% if (!edit) { %> 
-            <div class="form-group">
-                <label for="driver">Driver</label>
-                <select name="driver" id="driver">
-                    <option value="driver1">Driver 1</option>
-                    <option value="driver2">Driver 2</option>
-                    <option value="driver3">Driver 3</option>
-                </select>
-            </div>
+    <div class="add-task-heading">
+    <% if(edit) { %>
+        <h1>Update Task</h1>
+    <% } else { %>
+        <h1>Add A Task</h1>       
+    <% } %>
+    </div>
+    <div class="add-task-form">
+        <div class="add-task">
+            <% if(edit) { %>
+                <form action="/update-task" method="post">
+            <% } else { %>
+                <form action="/add-task" method="post">
+            <% } %>
+            <% if (!edit) { %> 
+                <div class="form-group">
+                    <label for="driver">Driver</label>
+                    <select class="form-control" name="driver" id="driver">
+                        <option value="driver1">Driver 1</option>
+                        <option value="driver2">Driver 2</option>
+                        <option value="driver3">Driver 3</option>
+                    </select>
+                </div>
             <% } %>
             <label for="week">Select Week</label>
-            <select name="week" id="week">
+            <select class="form-control" name="week" id="week">
                 <% for(let i = 1; i <= 52; i++) { %>
                     <option value="<%= i %>" <% if(edit) { if(i === parseInt(taskData.weekId)) { %> selected <% }} %>>Week <%= i %></option>
                     <% }%> 
-            </select>
-            <label for="day">Select Day</label>
-            <select name="day" id="day">
-                <option value="1" <% if(edit) { if(parseInt(taskData.day) === 1) { %> selected <% }} %>>Sunday</option>
-                <option value="2" <% if(edit) { if(parseInt(taskData.day) === 2) { %> selected <% }} %>>Monday</option>
-                <option value="3" <% if(edit) { if(parseInt(taskData.day) === 3) { %> selected <% }} %>>Tuesday</option>
-                <option value="4" <% if(edit) { if(parseInt(taskData.day) === 4) { %> selected <% }} %>>Wednesday</option>
-                <option value="5" <% if(edit) { if(parseInt(taskData.day) === 5) { %> selected <% }} %>>Thursday</option>
-                <option value="6" <% if(edit) { if(parseInt(taskData.day) === 6) { %> selected <% }} %>>Friday</option>
-                <option value="7" <% if(edit) { if(parseInt(taskData.day) === 7) { %> selected <% }} %>>Saturday</option>
-            </select>
-            <div class="form-group">
-                <label for="task">Task Type</label>
-                <select name="task" id="task">
-                    <option value="pickup" <% if(edit) { if(taskData.task === 'pickup') { %> selected <% }} %>>Pick Up</option>
-                    <option value="dropoff" <% if(edit) { if(taskData.task === 'dropoff') { %> selected <% }} %>>Drop Off</option>
-                    <option value="other" <% if(edit) { if(taskData.task === 'other') { %> selected <% }} %>>Other</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="startTime">Start Time:</label>
-                <select name="startTime" id="startTime">
-                    <option value="0" <% if(edit) { if(taskData.startTimeBlock === 1) { %> selected <% }} %>>00:00</option>
-                    <option value="1" <% if(edit) { if(taskData.startTimeBlock === 2) { %> selected <% }} %>>01:00</option>
-                    <option value="2" <% if(edit) { if(taskData.startTimeBlock === 3) { %> selected <% }} %>>02:00</option>
-                    <option value="3" <% if(edit) { if(taskData.startTimeBlock === 4) { %> selected <% }} %>>03:00</option>
-                    <option value="4" <% if(edit) { if(taskData.startTimeBlock === 5) { %> selected <% }} %>>04:00</option>
-                    <option value="5" <% if(edit) { if(taskData.startTimeBlock === 6) { %> selected <% }} %>>05:00</option>
-                    <option value="6" <% if(edit) { if(taskData.startTimeBlock === 7) { %> selected <% }} %>>06:00</option>
-                    <option value="7" <% if(edit) { if(taskData.startTimeBlock === 8) { %> selected <% }} %>>07:00</option>
-                    <option value="8" <% if(edit) { if(taskData.startTimeBlock === 9) { %> selected <% }} %>>08:00</option>
-                    <option value="9" <% if(edit) { if(taskData.startTimeBlock === 10) { %> selected <% }} %>>09:00</option>
-                    <option value="10" <% if(edit) { if(taskData.startTimeBlock === 11) { %> selected <% }} %>>10:00</option>
-                    <option value="11" <% if(edit) { if(taskData.startTimeBlock === 12) { %> selected <% }} %>>11:00</option>
-                    <option value="12" <% if(edit) { if(taskData.startTimeBlock === 13) { %> selected <% }} %>>12:00</option>
-                    <option value="13" <% if(edit) { if(taskData.startTimeBlock === 14) { %> selected <% }} %>>13:00</option>
-                    <option value="14" <% if(edit) { if(taskData.startTimeBlock === 15) { %> selected <% }} %>>14:00</option>
-                    <option value="15" <% if(edit) { if(taskData.startTimeBlock === 16) { %> selected <% }} %>>15:00</option>
-                    <option value="16" <% if(edit) { if(taskData.startTimeBlock === 17) { %> selected <% }} %>>16:00</option>
-                    <option value="17" <% if(edit) { if(taskData.startTimeBlock === 18) { %> selected <% }} %>>17:00</option>
-                    <option value="18" <% if(edit) { if(taskData.startTimeBlock === 19) { %> selected <% }} %>>18:00</option>
-                    <option value="19" <% if(edit) { if(taskData.startTimeBlock === 20) { %> selected <% }} %>>19:00</option>
-                    <option value="20" <% if(edit) { if(taskData.startTimeBlock === 21) { %> selected <% }} %>>20:00</option>
-                    <option value="21" <% if(edit) { if(taskData.startTimeBlock === 22) { %> selected <% }} %>>21:00</option>
-                    <option value="22" <% if(edit) { if(taskData.startTimeBlock === 23) { %> selected <% }} %>>22:00</option>
-                    <option value="23" <% if(edit) { if(taskData.startTimeBlock === 24) { %> selected <% }} %>>23:00</option>
+                <label for="day">Select Day</label>
+                <select class="form-control" name="day" id="day">
+                    <option value="1" <% if(edit) { if(parseInt(taskData.day) === 1) { %> selected <% }} %>>Sunday</option>
+                    <option value="2" <% if(edit) { if(parseInt(taskData.day) === 2) { %> selected <% }} %>>Monday</option>
+                    <option value="3" <% if(edit) { if(parseInt(taskData.day) === 3) { %> selected <% }} %>>Tuesday</option>
+                    <option value="4" <% if(edit) { if(parseInt(taskData.day) === 4) { %> selected <% }} %>>Wednesday</option>
+                    <option value="5" <% if(edit) { if(parseInt(taskData.day) === 5) { %> selected <% }} %>>Thursday</option>
+                    <option value="6" <% if(edit) { if(parseInt(taskData.day) === 6) { %> selected <% }} %>>Friday</option>
+                    <option value="7" <% if(edit) { if(parseInt(taskData.day) === 7) { %> selected <% }} %>>Saturday</option>
                 </select>
-            </div>
-            <div class="form-group">
+                <div class="form-group">
+                    <label for="task">Task Type</label>
+                    <select class="form-control" name="task" id="task">
+                        <option value="pickup" <% if(edit) { if(taskData.task === 'pickup') { %> selected <% }} %>>Pick Up</option>
+                        <option value="dropoff" <% if(edit) { if(taskData.task === 'dropoff') { %> selected <% }} %>>Drop Off</option>
+                        <option value="other" <% if(edit) { if(taskData.task === 'other') { %> selected <% }} %>>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="startTime">Start Time:</label>
+                    <select class="form-control" name="startTime" id="startTime">
+                        <option value="0" <% if(edit) { if(taskData.startTimeBlock === 1) { %> selected <% }} %>>00:00</option>
+                        <option value="1" <% if(edit) { if(taskData.startTimeBlock === 2) { %> selected <% }} %>>01:00</option>
+                        <option value="2" <% if(edit) { if(taskData.startTimeBlock === 3) { %> selected <% }} %>>02:00</option>
+                        <option value="3" <% if(edit) { if(taskData.startTimeBlock === 4) { %> selected <% }} %>>03:00</option>
+                        <option value="4" <% if(edit) { if(taskData.startTimeBlock === 5) { %> selected <% }} %>>04:00</option>
+                        <option value="5" <% if(edit) { if(taskData.startTimeBlock === 6) { %> selected <% }} %>>05:00</option>
+                        <option value="6" <% if(edit) { if(taskData.startTimeBlock === 7) { %> selected <% }} %>>06:00</option>
+                        <option value="7" <% if(edit) { if(taskData.startTimeBlock === 8) { %> selected <% }} %>>07:00</option>
+                        <option value="8" <% if(edit) { if(taskData.startTimeBlock === 9) { %> selected <% }} %>>08:00</option>
+                        <option value="9" <% if(edit) { if(taskData.startTimeBlock === 10) { %> selected <% }} %>>09:00</option>
+                        <option value="10" <% if(edit) { if(taskData.startTimeBlock === 11) { %> selected <% }} %>>10:00</option>
+                        <option value="11" <% if(edit) { if(taskData.startTimeBlock === 12) { %> selected <% }} %>>11:00</option>
+                        <option value="12" <% if(edit) { if(taskData.startTimeBlock === 13) { %> selected <% }} %>>12:00</option>
+                        <option value="13" <% if(edit) { if(taskData.startTimeBlock === 14) { %> selected <% }} %>>13:00</option>
+                        <option value="14" <% if(edit) { if(taskData.startTimeBlock === 15) { %> selected <% }} %>>14:00</option>
+                        <option value="15" <% if(edit) { if(taskData.startTimeBlock === 16) { %> selected <% }} %>>15:00</option>
+                        <option value="16" <% if(edit) { if(taskData.startTimeBlock === 17) { %> selected <% }} %>>16:00</option>
+                        <option value="17" <% if(edit) { if(taskData.startTimeBlock === 18) { %> selected <% }} %>>17:00</option>
+                        <option value="18" <% if(edit) { if(taskData.startTimeBlock === 19) { %> selected <% }} %>>18:00</option>
+                        <option value="19" <% if(edit) { if(taskData.startTimeBlock === 20) { %> selected <% }} %>>19:00</option>
+                        <option value="20" <% if(edit) { if(taskData.startTimeBlock === 21) { %> selected <% }} %>>20:00</option>
+                        <option value="21" <% if(edit) { if(taskData.startTimeBlock === 22) { %> selected <% }} %>>21:00</option>
+                        <option value="22" <% if(edit) { if(taskData.startTimeBlock === 23) { %> selected <% }} %>>22:00</option>
+                        <option value="23" <% if(edit) { if(taskData.startTimeBlock === 24) { %> selected <% }} %>>23:00</option>
+                    </select>
+                </div>
+<div class="form-group">
                 <label for="endTime">End Time:</label>
-                <select name="endTime" id="endTime">
+                <select class="form-control" name="endTime" id="endTime">
                     <option value="1" <% if(edit) { if(taskData.endTimeBlock === 2) { %> selected <% }} %>>01:00</option>
                     <option value="2" <% if(edit) { if(taskData.endTimeBlock === 3) { %> selected <% }} %>>02:00</option>
                     <option value="3" <% if(edit) { if(taskData.endTimeBlock === 4) { %> selected <% }} %>>03:00</option>
@@ -107,14 +115,15 @@
                 <textarea class="form-control" name="description" id="description" cols="3"><% if(edit){ %><%= taskData.description %><% } %></textarea>
             </div>
             <% if(edit) { %>
-            <input type="hidden" name="taskId" value="<%= taskData.taskId  %>">
-            <input type="hidden" name="driverId" value="<%= taskData.driverId %>">
-            <button type="submit" class="btn btn-primary">Update Task</button>
-            <% } else { %>
-            <button type="submit" class="btn btn-primary">Add Task</button>
-            <% } %>
-        </form>
-    </div>
-    
-</div>
-<%- include('./includes/foot.ejs') %>
+                <input type="hidden" name="taskId" value="<%= taskData.taskId  %>">
+                <input type="hidden" name="driverId" value="<%= taskData.driverId %>">
+                <button type="submit" class="btn btn-primary">Update Task</button>
+                <% } else { %>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                    <% } %>
+                </form>
+            </div>
+            
+            </div>
+        </div>
+        <%- include('./includes/foot.ejs') %>
