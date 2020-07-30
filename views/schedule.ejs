@@ -1,10 +1,10 @@
 <%- include('./includes/head.ejs') %>
+<div class="schedule-options">
     <div class="add-task-button">
         <form action="/add-task" method="GET">
         <input type="submit" value="Add Task">
     </form>
     </div>
-    <div class="schedule-options">
         <form action="/select-schedule" method="POST">
             <div class="form-group driver-select">
                 <label for="drivers">Drivers: </label>
