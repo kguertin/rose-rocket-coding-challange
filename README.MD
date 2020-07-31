@@ -9,7 +9,9 @@ npm install
 Then the user can run the application by running the following in the terminal
 ```
 npm start
-```
+```  
+
+You can also visit the application [here](https://rose-rocket-challange.herokuapp.com/)
 ### Application Usage
 ##### Add Task
 Users can add a task by clicking Add Task and filling in the task information for the desired driver. The app will then redirect to the week with the new task. If a user attempts to add a task that conflicts with an existing task for that driver the user will be prompted to comfirm that they want to remove the exisitng task.

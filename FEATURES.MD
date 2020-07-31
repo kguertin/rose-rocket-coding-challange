@@ -34,7 +34,7 @@
   - Host application. 
 
   ### CSV File
- - if application is hosted then prompt the csv file to be downloaded through browser rather than generate csv on server. 
+ - As the application is now deployed then prompt the csv file to be downloaded through browser rather than generate csv on server. 
 
  ### General
  - refactor code. A lot of duplicate code can be trimed, especially in regards to confirming operations, this could be one route.
