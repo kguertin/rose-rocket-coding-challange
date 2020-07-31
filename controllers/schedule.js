@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const Moment = require('moment');
 const MomentRange = require('moment-range');
@@ -308,7 +309,7 @@ exports.downloadSchedule = (req, res) => {
     const driverSchedule = scheduleData[driver];
 
     handleInterval(driverSchedule, scheduleInterval)
-    res.status(200).render('schedule', {
+    res.status(200).download(path.join(__dirname, 'schedule.csv').render('schedule', {
         error: null,
         weeklySchedule: driverSchedule['1']
     })
