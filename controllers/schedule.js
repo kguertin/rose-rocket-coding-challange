@@ -32,11 +32,11 @@ exports.addTask = (req, res) => {
 exports.postTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {driver, task, week, day, startTime, endTime, location, description} = req.body;
-
-    if (moment(startTime).isAfter(endTime)) {
+    console.log(startTime, endTime)
+    if (startTime >= endTime) {
         return res.render('schedule', {
         error: {
-            err: 'time-issye',
+            err: 'time-issue',
             msg: "Task end time should be after start time"
         },
         weeklySchedule: []

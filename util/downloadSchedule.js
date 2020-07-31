@@ -23,7 +23,6 @@ const handleInterval = (driverSchedule, scheduleInterval) => {
         for(let day = 1; day <= 7; day++){   
             if (dayCounter === 0) {
                 timeFrame = `day ${totalDays} - day ${totalDays + (scheduleInterval - 1)}`;
-                console.log(timeFrame)
             }
             driverSchedule[i].forEach(task => {
                 if (day === parseInt(task.day)) {
