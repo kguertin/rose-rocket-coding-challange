@@ -309,9 +309,9 @@ exports.downloadSchedule = (req, res) => {
     const driverSchedule = scheduleData[driver];
 
     handleInterval(driverSchedule, scheduleInterval)
-    res.status(200).render('schedule', {
+    res.status(200).download('../schedule.csv').render('schedule', {
         error: null,
         weeklySchedule: driverSchedule['1']
-    }).download('../', 'schedule.csv')
+    })
 
 }

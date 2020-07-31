@@ -51,7 +51,8 @@ const handleInterval = (driverSchedule, scheduleInterval) => {
     csvWriter.writeRecords(ScheduleData)
     .then(() => {
         console.log('Schedule Created');
-    });
+    })
+    .catch(err => console.log(err))
 
 }
 
