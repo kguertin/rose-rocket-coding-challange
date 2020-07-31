@@ -2,10 +2,11 @@
 <div class="container">
     <h1>This driver has a conflicting task during this time block</h1>
     <h3>Do you want to overide it?</h3>
+    <div class="confirm-btns">
     <form action="/select-schedule" method="POST">
         <input type="hidden" name="week" value="<%= existingTask.weekId %>">
         <input type="hidden" name="driver" value="<%= existingTask.driverId %>">
-        <button type="submit" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-danger confirm-cancel-btn">Cancel</button>
     </form>
     <form action="/confirm-new-task" method="POST">
         <input type="hidden" name="day" value="<%= newTaskData.day %>">
@@ -17,7 +18,8 @@
         <input type="hidden" name="weekId" value="<%= newTaskData.weekId %>">
         <input type="hidden" name="driverId" value="<%= newTaskData.driverId %>">
         <input type="hidden" name="existingTaskId" value="<%= existingTask.taskId %>">
-        <button type="submit" class="btn btn-primary">Confirm</button>
+        <button type="submit" class="btn btn-primary confirm-confirm-btn">Confirm</button>
     </form>
+    </div>
 </div>
 <%- include('./includes/foot.ejs') %>

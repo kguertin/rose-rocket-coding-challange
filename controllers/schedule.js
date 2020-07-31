@@ -32,7 +32,7 @@ exports.addTask = (req, res) => {
 exports.postTask = (req, res) => {
     if (!scheduleData) scheduleData = createScheduleData();
     const {driver, task, week, day, startTime, endTime, location, description} = req.body;
-    console.log(startTime, endTime)
+
     if (startTime >= endTime) {
         return res.render('schedule', {
         error: {
@@ -243,8 +243,8 @@ exports.confirmUpdatedTask = (req, res) => {
     let conflictingTask
     
     const existingSchedule = scheduleData[driverId][weekId];
-    const removeExistingTask = existingSchedule.filter(task => task.taskId !== Number(existingTaskId));
-    const newSchedule = removeExistingTask.filter(task => task.taskId !== Number(conflictingTaskId));
+    const removeExistingTask = existingSchedule.filter(task => Number(task.taskId) !== Number(existingTaskId));
+    const newSchedule = removeExistingTask.filter(task => Number(task.taskId) !== Number(conflictingTaskId));
     scheduleData[driverId][weekId] = newSchedule;
 
     const updatedTask = {

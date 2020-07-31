@@ -56,7 +56,6 @@
     border: 1px solid #444;
     text-align: center;
     padding: .75rem;
-    height: 10rem;
 }
 
 .time-block p {
@@ -84,4 +83,16 @@
     justify-content: center;
 }
 
+.confirm-btns {
+display: flex;
+justify-content: center;
+}
+
+.confirm-cancel-btn {
+    margin: 0 0.5rem;
+}
+
+.confirm-confirm-btn {
+    margin: 0 0.5rem;
+}
  
