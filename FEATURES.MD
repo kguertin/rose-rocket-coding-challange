@@ -16,6 +16,9 @@
   ### CSV File 
   - Users can download an csv summary file of the breakdown of pick ups, drop offs and other tasks within a defined time interval spaning a 52 week period.
 
+  ### General
+  - Application is [deployed on heroku](https://rose-rocket-challange.herokuapp.com/), but currently the CSV file only is generated on the sever root and now downloaded through the browser on the client side.
+
   ## Future Features (What I couldn't finish)
 
   ### Front End
